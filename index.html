@@ -1,200 +1,887 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Anjali — Architectural &amp; Interior Design Studio</title>
-<meta name="description" content="Portfolio of Anjali, architectural and interior designer specializing in modern residential and commercial spaces.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<header class="site-header" id="header">
-  <div class="container header-inner">
-    <a href="#home" class="logo">ANJALI<span>.</span></a>
-    <nav class="nav-desktop">
+  <!-- CONTENT: Page title + search description -->
+  <title>Anjali Design Studio — Architecture &amp; Interior Design, Mumbai</title>
+  <meta name="description" content="Award-winning architecture and interior design studio in Mumbai. Residential villas, workplaces, hospitality interiors and public spaces, drawn with care and built to last.">
+  <meta name="author" content="Anjali Design Studio">
+  <meta name="theme-color" content="#1a1816">
+  <link rel="canonical" href="https://senin142.github.io/architectPortfolio/">
+
+  <!-- CONTENT: Social sharing (Open Graph / Twitter). Replace og-image.png with a 1200×630 photo. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Anjali Design Studio">
+  <meta property="og:locale" content="en_IN">
+  <meta property="og:title" content="Anjali Design Studio — Architecture &amp; Interiors">
+  <meta property="og:description" content="Modern architecture and interiors — from private residences to boutique commercial spaces. Based in Mumbai.">
+  <meta property="og:image" content="https://senin142.github.io/architectPortfolio/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Anjali Design Studio — architectural line drawing of a building elevation">
+  <meta property="og:url" content="https://senin142.github.io/architectPortfolio/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Anjali Design Studio — Architecture &amp; Interiors">
+  <meta name="twitter:description" content="Modern architecture and interiors — from private residences to boutique commercial spaces. Based in Mumbai.">
+  <meta name="twitter:image" content="https://senin142.github.io/architectPortfolio/images/og-image.png">
+
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
+  <!-- Theme + JS detection: must run BEFORE the stylesheet to avoid a flash of the wrong theme -->
+  <script>(function(){var d=document.documentElement;d.className=d.className.replace('no-js','js');try{var t=localStorage.getItem('theme');if(t)d.setAttribute('data-theme',t);else if(window.matchMedia('(prefers-color-scheme: dark)').matches)d.setAttribute('data-theme','dark');}catch(e){}})();</script>
+
+  <!-- Fonts: Cormorant (numbers, italics) · Playfair (headings) · Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- CONTENT: Structured data for search engines (business details) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Anjali Design Studio",
+    "description": "Architecture and interior design studio in Mumbai specialising in residential villas, workplaces, hospitality interiors and public spaces.",
+    "url": "https://senin142.github.io/architectPortfolio/",
+    "image": "https://senin142.github.io/architectPortfolio/images/og-image.png",
+    "telephone": "+91 98765 43210",
+    "email": "hello@anjalidesign.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Mumbai",
+      "addressRegion": "Maharashtra",
+      "addressCountry": "IN"
+    },
+    "areaServed": "India",
+    "founder": { "@type": "Person", "name": "Anjali" },
+    "knowsAbout": ["Architecture", "Interior Design", "3D Visualization", "Space Planning"]
+  }
+  </script>
+</head>
+
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- Scroll progress line (left edge) -->
+  <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-fill"></div></div>
+
+  <!-- ============================================================ -->
+  <!-- HEADER                                                        -->
+  <!-- ============================================================ -->
+  <header class="site-header" id="header">
+    <div class="container header-inner">
+      <a href="#home" class="logo" aria-label="Anjali Design Studio — home">ANJALI<span>.</span></a>
+
+      <!-- CONTENT: Main navigation -->
+      <nav class="nav-desktop" aria-label="Primary">
+        <a href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">
+        <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+        </svg>
+        <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/>
+        </svg>
+      </button>
+
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMobile">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- CONTENT: Mobile navigation (keep in sync with the list above) -->
+    <nav class="nav-mobile" id="navMobile" aria-label="Mobile">
       <a href="#home">Home</a>
       <a href="#projects">Projects</a>
       <a href="#about">About</a>
       <a href="#services">Services</a>
+      <a href="#process">Process</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-  <nav class="nav-mobile" id="navMobile">
-    <a href="#home">Home</a>
-    <a href="#projects">Projects</a>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+  </header>
 
-<section class="hero" id="home" style="background-image:url('images/hero-bg.svg')">
-  <div class="hero-overlay"></div>
-  <div class="container hero-content">
-    <p class="eyebrow">Architecture &amp; Interior Design Studio</p>
-    <h1>Designing Spaces<br>That Inspire</h1>
-    <p class="hero-sub">We create thoughtful, modern architecture and interiors — from private residences to boutique commercial spaces.</p>
-    <div class="hero-actions">
-      <a href="#projects" class="btn btn-primary">View Projects</a>
-      <a href="#contact" class="btn btn-outline">Get In Touch</a>
-    </div>
-  </div>
-  <a href="#projects" class="scroll-cue" aria-label="Scroll to projects">↓</a>
-</section>
+  <main id="main">
 
-<section class="strip">
-  <div class="container strip-inner">
-    <div class="strip-item"><span class="strip-num">12+</span><span class="strip-label">Years Experience</span></div>
-    <div class="strip-item"><span class="strip-num">80+</span><span class="strip-label">Projects Completed</span></div>
-    <div class="strip-item"><span class="strip-num">25+</span><span class="strip-label">Awards &amp; Features</span></div>
-    <div class="strip-item"><span class="strip-num">98%</span><span class="strip-label">Client Satisfaction</span></div>
-  </div>
-</section>
+    <!-- ============================================================ -->
+    <!-- HERO                                                          -->
+    <!-- ============================================================ -->
+    <section class="hero" id="home">
+      <!-- CONTENT: Hero background image (replace images/hero-bg.svg with a wide photo, 1600×900 or larger) -->
+      <div class="hero-bg" style="background-image: url('images/hero-bg.svg')"></div>
+      <div class="hero-overlay"></div>
 
-<section class="projects" id="projects">
-  <div class="container">
-    <p class="section-eyebrow">Selected Work</p>
-    <h2 class="section-title">Featured Projects</h2>
-    <div class="project-grid">
-      <article class="project-card reveal">
-        <img src="images/project-1.svg" alt="Modern Villa project">
-        <div class="project-overlay">
-          <span class="project-cat">Residential</span>
-          <h3>Modern Villa</h3>
-        </div>
-      </article>
-      <article class="project-card reveal">
-        <img src="images/project-2.svg" alt="Urban Loft Renovation project">
-        <div class="project-overlay">
-          <span class="project-cat">Renovation</span>
-          <h3>Urban Loft Renovation</h3>
-        </div>
-      </article>
-      <article class="project-card reveal">
-        <img src="images/project-3.svg" alt="Minimalist Office Space project">
-        <div class="project-overlay">
-          <span class="project-cat">Commercial</span>
-          <h3>Minimalist Office Space</h3>
-        </div>
-      </article>
-      <article class="project-card reveal">
-        <img src="images/project-4.svg" alt="Boutique Hotel Lobby project">
-        <div class="project-overlay">
-          <span class="project-cat">Hospitality</span>
-          <h3>Boutique Hotel Lobby</h3>
-        </div>
-      </article>
-      <article class="project-card reveal">
-        <img src="images/project-5.svg" alt="Riverside Residence project">
-        <div class="project-overlay">
-          <span class="project-cat">Residential</span>
-          <h3>Riverside Residence</h3>
-        </div>
-      </article>
-      <article class="project-card reveal">
-        <img src="images/project-6.svg" alt="Sustainable Pavilion project">
-        <div class="project-overlay">
-          <span class="project-cat">Public Space</span>
-          <h3>Sustainable Pavilion</h3>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
+      <!-- Decorative: building section that drafts itself on load (ground, foundations, columns, slabs, cantilevered roof, stair, dimensions) -->
+      <svg class="hero-decoration line-draw" viewBox="0 0 600 500" aria-hidden="true" focusable="false">
+        <!-- ground line -->
+        <path class="draw-path" d="M20 440 H580" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" style="--draw-delay: 0s"/>
+        <!-- ground hatch -->
+        <path class="draw-path" d="M60 440 l-14 14 M110 440 l-14 14 M160 440 l-14 14 M210 440 l-14 14 M260 440 l-14 14 M310 440 l-14 14 M360 440 l-14 14 M410 440 l-14 14 M460 440 l-14 14 M510 440 l-14 14 M560 440 l-14 14" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" style="--draw-delay: 0.15s"/>
+        <!-- foundation pads -->
+        <path class="draw-path" d="M145 440 V456 H175 V440 M285 440 V456 H315 V440 M425 440 V456 H455 V440" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" style="--draw-delay: 0.3s"/>
+        <!-- columns -->
+        <path class="draw-path" d="M160 440 V150 M300 440 V150 M440 440 V150" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" style="--draw-delay: 0.45s"/>
+        <!-- first floor slab -->
+        <path class="draw-path" d="M140 340 H470 V350 H140 Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" style="--draw-delay: 0.7s"/>
+        <!-- second floor slab -->
+        <path class="draw-path" d="M140 240 H470 V250 H140 Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" style="--draw-delay: 0.85s"/>
+        <!-- roof slab with cantilever -->
+        <path class="draw-path" d="M140 140 H580 V150 H140 Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" style="--draw-delay: 1s"/>
+        <!-- parapet upstands -->
+        <path class="draw-path" d="M140 140 V118 H146 V140 M574 140 V118 H580 V140" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" style="--draw-delay: 1.15s"/>
+        <!-- glazing mullions -->
+        <path class="draw-path" d="M200 250 V340 M240 250 V340 M350 350 V440 M390 350 V440" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" style="--draw-delay: 1.3s"/>
+        <!-- stair flight -->
+        <path class="draw-path" d="M170 350 h12 v-12.5 h12 v-12.5 h12 v-12.5 h12 v-12.5 h12 v-12.5 h12 v-12.5 h12 v-12.5 h12 v-12.5 h22" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round" style="--draw-delay: 1.45s"/>
+        <!-- extension lines (levels) -->
+        <path class="draw-path" d="M138 340 H80 M138 240 H80 M138 140 H80" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" style="--draw-delay: 1.55s"/>
+        <!-- vertical dimension line with ticks -->
+        <path class="draw-path" d="M90 450 V130 M84 446 l12 -12 M84 346 l12 -12 M84 246 l12 -12 M84 146 l12 -12" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" style="--draw-delay: 1.65s"/>
+        <!-- horizontal dimension line with ticks -->
+        <path class="draw-path" d="M140 462 V490 M470 462 V490 M580 462 V490 M140 480 H580 M134 486 l12 -12 M464 486 l12 -12 M574 486 l12 -12" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" style="--draw-delay: 1.8s"/>
+        <!-- title block fragment -->
+        <path class="draw-path" d="M30 40 H180 V96 H30 Z M30 68 H180 M105 68 V96" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linejoin="round" style="--draw-delay: 1.95s"/>
+        <!-- scale figure -->
+        <path class="draw-path" d="M520 410 m-4 0 a4 4 0 1 0 8 0 a4 4 0 1 0 -8 0 M520 414 V432 M520 432 l-6 8 M520 432 l6 8 M520 420 l-7 6 M520 420 l7 6" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" style="--draw-delay: 2.1s"/>
+      </svg>
 
-<section class="about" id="about">
-  <div class="container about-inner">
-    <div class="about-image reveal">
-      <img src="images/about-portrait.svg" alt="Portrait of Anjali">
-    </div>
-    <div class="about-text reveal">
-      <p class="section-eyebrow">About</p>
-      <h2 class="section-title">Hi, I'm Anjali</h2>
-      <p>I'm an architectural and interior designer focused on creating spaces that balance form, function, and feeling. My work spans private residences, boutique commercial interiors, and public installations — each shaped by its site, its light, and the people who will use it.</p>
-      <p>I studied architecture and have spent over a decade collaborating with clients, contractors, and craftspeople to turn ideas into built spaces that last.</p>
-      <a href="#contact" class="btn btn-primary">Let's Work Together</a>
-    </div>
-  </div>
-</section>
-
-<section class="services" id="services">
-  <div class="container">
-    <p class="section-eyebrow">What I Do</p>
-    <h2 class="section-title">Services</h2>
-    <div class="services-grid">
-      <div class="service-card reveal">
-        <div class="service-icon">01</div>
-        <h3>Architectural Design</h3>
-        <p>Concept through construction documentation for residential and commercial projects.</p>
+      <!-- CONTENT: Hero text -->
+      <div class="container hero-content">
+        <span class="eyebrow">Architecture &amp; Interiors — Mumbai</span>
+        <h1 class="text-build">Designing Spaces That Inspire</h1>
+        <p class="hero-sub">A Mumbai-based studio shaping homes, workplaces and public rooms that hold light, weather and the lives lived inside them.</p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-outline">Get in Touch</a>
+        </div>
       </div>
-      <div class="service-card reveal">
-        <div class="service-icon">02</div>
-        <h3>Interior Design</h3>
-        <p>Space planning, material selection, and custom detailing for cohesive interiors.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon">03</div>
-        <h3>3D Visualization</h3>
-        <p>Photorealistic renders and walkthroughs to help clients see a project before it's built.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon">04</div>
-        <h3>Space Planning</h3>
-        <p>Functional layouts that optimize flow, light, and usable area for any site.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section class="contact" id="contact">
-  <div class="container contact-inner">
-    <div class="contact-info reveal">
-      <p class="section-eyebrow">Get In Touch</p>
-      <h2 class="section-title">Let's Start a Project</h2>
-      <p>Have a project in mind? Tell me a bit about it and I'll get back to you within a couple of days.</p>
-      <ul class="contact-details">
-        <li><strong>Email</strong><span>hello@anjalidesign.com</span></li>
-        <li><strong>Phone</strong><span>+91 98765 43210</span></li>
-        <li><strong>Studio</strong><span>Mumbai, India</span></li>
-      </ul>
-      <div class="social-links">
+      <a href="#projects" class="scroll-cue" aria-label="Scroll to projects">
+        <svg width="16" height="40" viewBox="0 0 16 40" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M8 2v34M3 31l5 5 5-5"/>
+        </svg>
+      </a>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- STATS                                                         -->
+    <!-- ============================================================ -->
+    <!-- CONTENT: Key numbers. Edit data-target (number), data-suffix and the visible text together. -->
+    <section class="stats" aria-label="Studio at a glance">
+      <div class="container stats-inner">
+        <div class="stat-item">
+          <span class="stat-num" data-target="12" data-suffix="+">12+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="80" data-suffix="+">80+</span>
+          <span class="stat-label">Projects Completed</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="25" data-suffix="+">25+</span>
+          <span class="stat-label">Awards &amp; Features</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="98" data-suffix="%">98%</span>
+          <span class="stat-label">Client Satisfaction</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider line-draw" aria-hidden="true">
+      <svg viewBox="0 0 600 24" focusable="false">
+        <path class="draw-path" d="M8 12 H288" fill="none" stroke="currentColor" stroke-width="1" style="--draw-delay: 0s"/>
+        <path class="draw-path" d="M312 12 H592" fill="none" stroke="currentColor" stroke-width="1" style="--draw-delay: 0s"/>
+        <path class="draw-path" d="M4 16 L12 8 M588 16 L596 8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" style="--draw-delay: 0.3s"/>
+        <path class="draw-path" d="M300 5 L307 12 L300 19 L293 12 Z" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round" style="--draw-delay: 0.45s"/>
+      </svg>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 01 PROJECTS                                                   -->
+    <!-- ============================================================ -->
+    <section class="projects" id="projects">
+      <div class="container">
+        <div class="chapter-heading reveal-up">
+          <span class="chapter-num" aria-hidden="true">01</span>
+          <div class="chapter-line" aria-hidden="true"></div>
+          <span class="section-eyebrow">Selected Work</span>
+          <h2 class="section-title">Projects</h2>
+        </div>
+
+        <div class="filter-bar" role="tablist" aria-label="Filter projects by category">
+          <button class="filter-btn active" type="button" data-filter="all" role="tab" aria-selected="true">All</button>
+          <button class="filter-btn" type="button" data-filter="residential" role="tab" aria-selected="false">Residential</button>
+          <button class="filter-btn" type="button" data-filter="commercial" role="tab" aria-selected="false">Commercial</button>
+          <button class="filter-btn" type="button" data-filter="hospitality" role="tab" aria-selected="false">Hospitality</button>
+          <button class="filter-btn" type="button" data-filter="public" role="tab" aria-selected="false">Public</button>
+        </div>
+
+        <!-- CONTENT: Project cards. Each card links to its modal (#project-N) at the bottom of this file.
+             Images: replace images/project-N.svg with an 800×600 photo. Once a matching images/project-N.webp
+             exists, uncomment the <source> line (a <source> pointing to a missing file shows a broken image). -->
+        <div class="project-grid" id="projectGrid">
+
+          <article class="project-card curtain-reveal featured" data-category="residential" style="--i: 0">
+            <picture>
+              <!-- <source srcset="images/project-1.webp" type="image/webp"> -->
+              <img src="images/project-1.svg" width="800" height="600" alt="Modern Villa — stone volumes stepping down a coastal slope in Alibaug">
+            </picture>
+            <div class="project-overlay">
+              <span class="project-num">01</span>
+              <span class="project-cat">Residential</span>
+              <h3>Modern Villa</h3>
+              <p class="project-desc">Three stone volumes stepping down a coastal slope toward a rainwater pool.</p>
+            </div>
+            <a href="#project-1" class="project-link"><span class="visually-hidden">View Modern Villa project details</span></a>
+          </article>
+
+          <article class="project-card curtain-reveal" data-category="residential" style="--i: 1">
+            <picture>
+              <!-- <source srcset="images/project-2.webp" type="image/webp"> -->
+              <img src="images/project-2.svg" width="800" height="600" loading="lazy" alt="Urban Loft Renovation — double-height living room with exposed brick and a steel mezzanine">
+            </picture>
+            <div class="project-overlay">
+              <span class="project-num">02</span>
+              <span class="project-cat">Renovation</span>
+              <h3>Urban Loft Renovation</h3>
+              <p class="project-desc">A textile godown reborn as a double-height home with a sleeping mezzanine.</p>
+            </div>
+            <a href="#project-2" class="project-link"><span class="visually-hidden">View Urban Loft Renovation project details</span></a>
+          </article>
+
+          <article class="project-card curtain-reveal" data-category="commercial" style="--i: 2">
+            <picture>
+              <!-- <source srcset="images/project-3.webp" type="image/webp"> -->
+              <img src="images/project-3.svg" width="800" height="600" loading="lazy" alt="Minimalist Office Space — pale ash workstations along a glazed perimeter">
+            </picture>
+            <div class="project-overlay">
+              <span class="project-num">03</span>
+              <span class="project-cat">Commercial</span>
+              <h3>Minimalist Office Space</h3>
+              <p class="project-desc">A daylit fintech headquarters planned around a central street.</p>
+            </div>
+            <a href="#project-3" class="project-link"><span class="visually-hidden">View Minimalist Office Space project details</span></a>
+          </article>
+
+          <article class="project-card curtain-reveal" data-category="hospitality" style="--i: 3">
+            <picture>
+              <!-- <source srcset="images/project-4.webp" type="image/webp"> -->
+              <img src="images/project-4.svg" width="800" height="600" loading="lazy" alt="Boutique Hotel Lobby — brass reception desk beneath a restored coffered ceiling">
+            </picture>
+            <div class="project-overlay">
+              <span class="project-num">04</span>
+              <span class="project-cat">Hospitality</span>
+              <h3>Boutique Hotel Lobby</h3>
+              <p class="project-desc">A hushed, brass-lit arrival for a restored Edwardian hotel.</p>
+            </div>
+            <a href="#project-4" class="project-link"><span class="visually-hidden">View Boutique Hotel Lobby project details</span></a>
+          </article>
+
+          <article class="project-card curtain-reveal" data-category="residential" style="--i: 4">
+            <picture>
+              <!-- <source srcset="images/project-5.webp" type="image/webp"> -->
+              <img src="images/project-5.svg" width="800" height="600" loading="lazy" alt="Riverside Residence — concrete frame and brick jali screens opening to the river">
+            </picture>
+            <div class="project-overlay">
+              <span class="project-num">05</span>
+              <span class="project-cat">Residential</span>
+              <h3>Riverside Residence</h3>
+              <p class="project-desc">A shaded river pavilion for three generations of one family.</p>
+            </div>
+            <a href="#project-5" class="project-link"><span class="visually-hidden">View Riverside Residence project details</span></a>
+          </article>
+
+          <article class="project-card curtain-reveal" data-category="public" style="--i: 5">
+            <picture>
+              <!-- <source srcset="images/project-6.webp" type="image/webp"> -->
+              <img src="images/project-6.svg" width="800" height="600" loading="lazy" alt="Sustainable Pavilion — folded timber canopy over an open lakefront gathering space">
+            </picture>
+            <div class="project-overlay">
+              <span class="project-num">06</span>
+              <span class="project-cat">Public Space</span>
+              <h3>Sustainable Pavilion</h3>
+              <p class="project-desc">A folded timber canopy on the Powai lakefront, powered by the sun.</p>
+            </div>
+            <a href="#project-6" class="project-link"><span class="visually-hidden">View Sustainable Pavilion project details</span></a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider line-draw" aria-hidden="true">
+      <svg viewBox="0 0 600 24" focusable="false">
+        <path class="draw-path" d="M8 12 H288" fill="none" stroke="currentColor" stroke-width="1" style="--draw-delay: 0s"/>
+        <path class="draw-path" d="M312 12 H592" fill="none" stroke="currentColor" stroke-width="1" style="--draw-delay: 0s"/>
+        <path class="draw-path" d="M4 16 L12 8 M588 16 L596 8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" style="--draw-delay: 0.3s"/>
+        <path class="draw-path" d="M300 5 L307 12 L300 19 L293 12 Z" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round" style="--draw-delay: 0.45s"/>
+      </svg>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 02 ABOUT                                                      -->
+    <!-- ============================================================ -->
+    <section class="about" id="about">
+      <!-- Decorative: faint structural grid behind the section -->
+      <svg class="about-grid-deco" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+        <g fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="14 5 2 5">
+          <path d="M100 0 V600 M200 0 V600 M300 0 V600 M400 0 V600 M500 0 V600"/>
+          <path d="M0 100 H600 M0 200 H600 M0 300 H600 M0 400 H600 M0 500 H600"/>
+        </g>
+        <g fill="none" stroke="currentColor" stroke-width="1">
+          <circle cx="100" cy="24" r="10"/><circle cx="200" cy="24" r="10"/><circle cx="300" cy="24" r="10"/><circle cx="400" cy="24" r="10"/><circle cx="500" cy="24" r="10"/>
+          <circle cx="24" cy="100" r="10"/><circle cx="24" cy="200" r="10"/><circle cx="24" cy="300" r="10"/><circle cx="24" cy="400" r="10"/><circle cx="24" cy="500" r="10"/>
+        </g>
+      </svg>
+
+      <div class="container about-inner">
+        <!-- CONTENT: Portrait (replace images/about-portrait.svg with a 600×720 photo) -->
+        <div class="about-image clip-reveal-diagonal">
+          <picture>
+            <!-- <source srcset="images/about-portrait.webp" type="image/webp"> -->
+            <img src="images/about-portrait.svg" width="600" height="720" loading="lazy" alt="Portrait of Anjali, principal architect, at her drawing table">
+          </picture>
+        </div>
+
+        <!-- CONTENT: About text -->
+        <div class="about-text">
+          <div class="chapter-heading chapter-heading--left reveal-up">
+            <span class="chapter-num" aria-hidden="true">02</span>
+            <div class="chapter-line" aria-hidden="true"></div>
+            <span class="section-eyebrow">The Architect</span>
+            <h2 class="section-title">Hi, I'm Anjali</h2>
+          </div>
+          <p class="reveal-up" style="--i: 1">I'm an architect and interior designer based in Mumbai. I design homes, workplaces and public rooms that balance form, function and feeling — spaces shaped by their site, their light and the people who will use them every day.</p>
+          <p class="reveal-up" style="--i: 2">After training in architecture and several years on hospitality projects across India and Southeast Asia, I founded Anjali Design Studio in 2014. For more than a decade I've worked alongside clients, contractors and craftspeople to turn ideas into built spaces that last.</p>
+          <p class="reveal-up" style="--i: 3">The studio's work has been published and awarded widely, but the measure I care about is simpler: whether a client still loves the space five years on.</p>
+          <p class="signature reveal-up" style="--i: 4">— Anjali, Principal Architect</p>
+          <a href="#contact" class="btn btn-primary reveal-up" style="--i: 5">Let's Work Together</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider line-draw" aria-hidden="true">
+      <svg viewBox="0 0 600 24" focusable="false">
+        <path class="draw-path" d="M8 12 H288" fill="none" stroke="currentColor" stroke-width="1" style="--draw-delay: 0s"/>
+        <path class="draw-path" d="M312 12 H592" fill="none" stroke="currentColor" stroke-width="1" style="--draw-delay: 0s"/>
+        <path class="draw-path" d="M4 16 L12 8 M588 16 L596 8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" style="--draw-delay: 0.3s"/>
+        <path class="draw-path" d="M300 5 L307 12 L300 19 L293 12 Z" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round" style="--draw-delay: 0.45s"/>
+      </svg>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 03 SERVICES                                                   -->
+    <!-- ============================================================ -->
+    <section class="services" id="services">
+      <div class="container">
+        <div class="chapter-heading reveal-up">
+          <span class="chapter-num" aria-hidden="true">03</span>
+          <div class="chapter-line" aria-hidden="true"></div>
+          <span class="section-eyebrow">What I Do</span>
+          <h2 class="section-title">Services</h2>
+        </div>
+
+        <!-- CONTENT: Services -->
+        <div class="services-grid">
+          <div class="service-card reveal-up" style="--i: 0">
+            <span class="service-num" aria-hidden="true">01</span>
+            <svg class="service-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6M9 12h2M13 12h2"/>
+            </svg>
+            <h3>Architectural Design</h3>
+            <p>From first sketch to construction drawings: new-build homes, workplaces and public buildings shaped by site, climate and the way people will actually use them.</p>
+          </div>
+
+          <div class="service-card reveal-up" style="--i: 1">
+            <span class="service-num" aria-hidden="true">02</span>
+            <svg class="service-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M6 10V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3M3 12a2 2 0 0 1 2-2h1v3h12v-3h1a2 2 0 0 1 2 2v5H3zM5 17v2M19 17v2"/>
+            </svg>
+            <h3>Interior Design</h3>
+            <p>Space planning, material palettes and bespoke joinery that carry the architecture inside, so rooms feel settled rather than decorated.</p>
+          </div>
+
+          <div class="service-card reveal-up" style="--i: 2">
+            <span class="service-num" aria-hidden="true">03</span>
+            <svg class="service-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3zM12 12l8-4.5M12 12L4 7.5M12 12v9"/>
+            </svg>
+            <h3>3D Visualization</h3>
+            <p>Daylight studies, photoreal renders and walkthroughs that let you stand inside a design and make decisions before a single wall goes up.</p>
+          </div>
+
+          <div class="service-card reveal-up" style="--i: 3">
+            <span class="service-num" aria-hidden="true">04</span>
+            <svg class="service-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M3 3h18v18H3zM12 3v18M3 12h9M12 15h3M15 15a3 3 0 0 1 3 3"/>
+            </svg>
+            <h3>Space Planning</h3>
+            <p>Layouts that recover wasted area, improve flow and light, and future-proof a plan for how it will be lived in ten years from now.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 04 PROCESS                                                    -->
+    <!-- ============================================================ -->
+    <section class="process" id="process">
+      <div class="container">
+        <div class="chapter-heading reveal-up">
+          <span class="chapter-num" aria-hidden="true">04</span>
+          <div class="chapter-line" aria-hidden="true"></div>
+          <span class="section-eyebrow">How I Work</span>
+          <h2 class="section-title">Design Process</h2>
+        </div>
+
+        <!-- CONTENT: Process steps -->
+        <div class="process-timeline">
+          <div class="process-step clip-reveal" style="--i: 0">
+            <span class="process-num" aria-hidden="true">01</span>
+            <h3>Discover</h3>
+            <p>We begin with a site visit and a long conversation. I want to understand how you live or work, what the land and light are doing, and what the budget can honestly carry.</p>
+          </div>
+          <div class="process-connector" aria-hidden="true"></div>
+          <div class="process-step clip-reveal" style="--i: 1">
+            <span class="process-num" aria-hidden="true">02</span>
+            <h3>Design</h3>
+            <p>Hand sketches become plans, models and material boards. We test options together until the scheme feels inevitable, then I lock the details and drawings.</p>
+          </div>
+          <div class="process-connector" aria-hidden="true"></div>
+          <div class="process-step clip-reveal" style="--i: 2">
+            <span class="process-num" aria-hidden="true">03</span>
+            <h3>Develop</h3>
+            <p>Permits, tender and construction. I stay close to the site, working with trusted contractors and craftspeople so that what is drawn is what gets built.</p>
+          </div>
+          <div class="process-connector" aria-hidden="true"></div>
+          <div class="process-step clip-reveal" style="--i: 3">
+            <span class="process-num" aria-hidden="true">04</span>
+            <h3>Deliver</h3>
+            <p>A final walkthrough, styling, snagging and handover — then a visit a year later, because a building is only finished once it has been lived in.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider line-draw" aria-hidden="true">
+      <svg viewBox="0 0 600 24" focusable="false">
+        <path class="draw-path" d="M8 12 H288" fill="none" stroke="currentColor" stroke-width="1" style="--draw-delay: 0s"/>
+        <path class="draw-path" d="M312 12 H592" fill="none" stroke="currentColor" stroke-width="1" style="--draw-delay: 0s"/>
+        <path class="draw-path" d="M4 16 L12 8 M588 16 L596 8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" style="--draw-delay: 0.3s"/>
+        <path class="draw-path" d="M300 5 L307 12 L300 19 L293 12 Z" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round" style="--draw-delay: 0.45s"/>
+      </svg>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 05 TESTIMONIALS                                               -->
+    <!-- ============================================================ -->
+    <section class="testimonials" id="testimonials">
+      <div class="container">
+        <div class="chapter-heading reveal-up">
+          <span class="chapter-num" aria-hidden="true">05</span>
+          <div class="chapter-line" aria-hidden="true"></div>
+          <span class="section-eyebrow">Client Words</span>
+          <h2 class="section-title">Testimonials</h2>
+        </div>
+
+        <!-- CONTENT: Testimonials -->
+        <div class="testimonial-grid">
+          <blockquote class="testimonial-card reveal-fade" style="--i: 0">
+            <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+            <p>Anjali listened more than she spoke, and then drew exactly the house we hadn't been able to describe. Two monsoons later it still surprises us.</p>
+            <footer>
+              <cite class="testimonial-author">Priya Mehta</cite>
+              <span class="testimonial-project">Modern Villa, Alibaug &middot; 2024</span>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial-card reveal-fade" style="--i: 1">
+            <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+            <p>She treated our old godown with real respect. Nothing feels forced; the new steel and the old brick seem to have always lived together.</p>
+            <footer>
+              <cite class="testimonial-author">Rohan &amp; Nisha Kapoor</cite>
+              <span class="testimonial-project">Urban Loft Renovation, Bandra &middot; 2023</span>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial-card reveal-fade" style="--i: 2">
+            <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+            <p>The office changed how our team works. People stay late because they want to, not because they have to. That is a design result, not a culture one.</p>
+            <footer>
+              <cite class="testimonial-author">Arjun Desai, Founder, Northline Ventures</cite>
+              <span class="testimonial-project">Minimalist Office Space, BKC &middot; 2023</span>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial-card reveal-fade" style="--i: 3">
+            <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+            <p>Guests comment on the lobby before they have even checked in. It set the tone for the whole hotel, and for how we talk about ourselves.</p>
+            <footer>
+              <cite class="testimonial-author">Meera Iyer, General Manager</cite>
+              <span class="testimonial-project">Boutique Hotel Lobby, Colaba &middot; 2022</span>
+            </footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider line-draw" aria-hidden="true">
+      <svg viewBox="0 0 600 24" focusable="false">
+        <path class="draw-path" d="M8 12 H288" fill="none" stroke="currentColor" stroke-width="1" style="--draw-delay: 0s"/>
+        <path class="draw-path" d="M312 12 H592" fill="none" stroke="currentColor" stroke-width="1" style="--draw-delay: 0s"/>
+        <path class="draw-path" d="M4 16 L12 8 M588 16 L596 8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" style="--draw-delay: 0.3s"/>
+        <path class="draw-path" d="M300 5 L307 12 L300 19 L293 12 Z" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round" style="--draw-delay: 0.45s"/>
+      </svg>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 06 CONTACT                                                    -->
+    <!-- ============================================================ -->
+    <section class="contact" id="contact">
+      <div class="container contact-inner">
+        <!-- CONTENT: Contact details -->
+        <div class="contact-info reveal-up">
+          <div class="chapter-heading chapter-heading--left">
+            <span class="chapter-num" aria-hidden="true">06</span>
+            <div class="chapter-line" aria-hidden="true"></div>
+            <span class="section-eyebrow">Get In Touch</span>
+            <h2 class="section-title">Let's Start a Project</h2>
+          </div>
+          <p>Have a plot, a plan or a half-formed idea? Tell me a little about it and I'll reply within two working days.</p>
+          <ul class="contact-details">
+            <li><strong>Email</strong><a href="mailto:hello@anjalidesign.com">hello@anjalidesign.com</a></li>
+            <li><strong>Phone</strong><a href="tel:+919876543210">+91 98765 43210</a></li>
+            <li><strong>Studio</strong><span>Mumbai, India</span></li>
+          </ul>
+          <!-- CONTENT: Social links (replace # with real profile URLs) -->
+          <div class="social-links">
+            <a href="#" aria-label="Instagram">Instagram</a>
+            <a href="#" aria-label="LinkedIn">LinkedIn</a>
+            <a href="#" aria-label="Behance">Behance</a>
+            <a href="#" aria-label="Pinterest">Pinterest</a>
+          </div>
+        </div>
+
+        <!-- CONTENT: Contact form. To make it send mail, see CONTENT-GUIDE.md (Formspree / Netlify Forms). -->
+        <form class="contact-form reveal-up" id="contactForm" novalidate>
+          <div class="form-row">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required minlength="2" autocomplete="name">
+            <span class="field-error" aria-live="polite"></span>
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+            <span class="field-error" aria-live="polite"></span>
+          </div>
+          <div class="form-row">
+            <label for="message">Tell me about your project</label>
+            <textarea id="message" name="message" rows="5" required minlength="10" autocomplete="off"></textarea>
+            <span class="field-error" aria-live="polite"></span>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+          <p class="form-note" id="formNote" role="status" hidden>Thank you — your message has been noted. This demo form is not yet connected to a mail service; see CONTENT-GUIDE.md to link it to Formspree or Netlify Forms.</p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================ -->
+  <!-- FOOTER                                                        -->
+  <!-- ============================================================ -->
+  <footer class="site-footer">
+    <!-- Decorative: floor-plan fragment (double-line walls, windows, door swing, stair, dimensions) -->
+    <svg class="footer-decoration line-draw" viewBox="0 0 600 240" aria-hidden="true" focusable="false">
+      <!-- outer wall -->
+      <path class="draw-path" d="M40 220 V40 H520 V220" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" style="--draw-delay: 0s"/>
+      <!-- inner wall line -->
+      <path class="draw-path" d="M52 220 V52 H508 V220" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round" style="--draw-delay: 0.2s"/>
+      <!-- partition wall with door opening -->
+      <path class="draw-path" d="M280 52 V140 M292 52 V140 M280 200 V220 M292 200 V220" fill="none" stroke="currentColor" stroke-width="1" style="--draw-delay: 0.4s"/>
+      <!-- windows -->
+      <path class="draw-path" d="M120 40 V52 M200 40 V52 M120 46 H200 M380 40 V52 M460 40 V52 M380 46 H460" fill="none" stroke="currentColor" stroke-width="0.8" style="--draw-delay: 0.55s"/>
+      <!-- door leaf + swing -->
+      <path class="draw-path" d="M292 140 H352 A60 60 0 0 1 292 200" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" style="--draw-delay: 0.7s"/>
+      <!-- top dimension line -->
+      <path class="draw-path" d="M40 36 V12 M520 36 V12 M40 18 H520 M34 24 l12 -12 M514 24 l12 -12" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" style="--draw-delay: 0.9s"/>
+      <!-- right dimension line -->
+      <path class="draw-path" d="M536 40 H566 M536 220 H566 M560 40 V220 M554 46 l12 -12 M554 226 l12 -12" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" style="--draw-delay: 1.05s"/>
+      <!-- stair -->
+      <path class="draw-path" d="M420 160 V220 M500 160 V220 M420 160 H500 M420 172 H500 M420 184 H500 M420 196 H500 M420 208 H500" fill="none" stroke="currentColor" stroke-width="0.8" style="--draw-delay: 1.2s"/>
+    </svg>
+
+    <div class="container footer-inner">
+      <!-- CONTENT: Footer brand -->
+      <div class="footer-brand">
+        <a href="#home" class="logo" aria-label="Anjali Design Studio — back to top">ANJALI<span>.</span></a>
+        <p class="footer-tagline">Architecture &amp; Interior Design Studio — Mumbai</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <!-- CONTENT: Social links (replace # with real profile URLs) -->
+      <div class="footer-social">
         <a href="#" aria-label="Instagram">Instagram</a>
         <a href="#" aria-label="LinkedIn">LinkedIn</a>
         <a href="#" aria-label="Behance">Behance</a>
+        <a href="#" aria-label="Pinterest">Pinterest</a>
       </div>
     </div>
-    <form class="contact-form reveal" id="contactForm">
-      <div class="form-row">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required>
-      </div>
-      <div class="form-row">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-      <div class="form-row">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary">Send Message</button>
-      <p class="form-note" id="formNote" hidden>Thanks! This is a demo form — connect it to a backend or form service to receive messages.</p>
-    </form>
-  </div>
-</section>
 
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <span>&copy; <span id="year"></span> Anjali Design Studio. All rights reserved.</span>
-    <a href="#home" class="back-top">Back to top ↑</a>
-  </div>
-</footer>
+    <div class="container footer-bottom">
+      <small>&copy; <span id="year">2026</span> Anjali Design Studio. All rights reserved.</small>
+      <a href="#home" class="back-top">Back to top &uarr;</a>
+    </div>
+  </footer>
 
-<script src="js/main.js"></script>
+  <!-- ============================================================ -->
+  <!-- PROJECT MODALS (opened via #project-N links)                  -->
+  <!-- ============================================================ -->
+
+  <!-- CONTENT: Project 1 — Modern Villa -->
+  <div class="project-modal" id="project-1" role="dialog" aria-modal="true" aria-labelledby="project-1-title" hidden>
+    <div class="modal-topbar">
+      <span class="project-num">01 / 06</span>
+      <button class="modal-close" type="button" aria-label="Close project details">&times;</button>
+    </div>
+    <div class="modal-content">
+      <div class="modal-hero">
+        <picture>
+          <!-- <source srcset="images/project-1.webp" type="image/webp"> -->
+          <img src="images/project-1.svg" width="800" height="600" loading="lazy" alt="Modern Villa — stone volumes stepping down a coastal slope in Alibaug" data-lightbox="project-1">
+        </picture>
+      </div>
+      <div class="container modal-body">
+        <span class="project-cat">Residential</span>
+        <h2 id="project-1-title">Modern Villa</h2>
+        <dl class="project-meta-grid">
+          <div><dt>Year</dt><dd>2024</dd></div>
+          <div><dt>Location</dt><dd>Alibaug, Maharashtra</dd></div>
+          <div><dt>Area</dt><dd>6,200 sq ft</dd></div>
+          <div><dt>Scope</dt><dd>Architecture, Interiors, Landscape</dd></div>
+        </dl>
+        <p class="project-full-desc">Set on a sloping plot above the Alibaug coastline, the villa is organised as three stone-clad volumes stepping down with the land. Deep verandahs wrap the living spaces, so the family moves between inside and outside without noticing a threshold.</p>
+        <p class="project-full-desc">Materials were chosen to weather gracefully: locally quarried basalt, teak shutters and lime-plastered walls that soften the afternoon light. A rainwater-fed pool anchors the lower terrace and cools the sea breeze before it reaches the house.</p>
+        <div class="modal-gallery">
+          <!-- CONTENT: extra images for this project, each with data-lightbox="project-1" (800×600) -->
+          <img src="images/project-1.svg" width="800" height="600" loading="lazy" alt="Modern Villa — verandah and rainwater pool on the lower terrace" data-lightbox="project-1">
+        </div>
+      </div>
+    </div>
+    <nav class="project-nav" aria-label="Project navigation">
+      <a href="#project-6" class="prev">&larr; Previous</a>
+      <button class="modal-close-text" type="button">Close</button>
+      <a href="#project-2" class="next">Next &rarr;</a>
+    </nav>
+  </div>
+
+  <!-- CONTENT: Project 2 — Urban Loft Renovation -->
+  <div class="project-modal" id="project-2" role="dialog" aria-modal="true" aria-labelledby="project-2-title" hidden>
+    <div class="modal-topbar">
+      <span class="project-num">02 / 06</span>
+      <button class="modal-close" type="button" aria-label="Close project details">&times;</button>
+    </div>
+    <div class="modal-content">
+      <div class="modal-hero">
+        <picture>
+          <!-- <source srcset="images/project-2.webp" type="image/webp"> -->
+          <img src="images/project-2.svg" width="800" height="600" loading="lazy" alt="Urban Loft Renovation — double-height living room with exposed brick and a steel mezzanine" data-lightbox="project-2">
+        </picture>
+      </div>
+      <div class="container modal-body">
+        <span class="project-cat">Renovation</span>
+        <h2 id="project-2-title">Urban Loft Renovation</h2>
+        <dl class="project-meta-grid">
+          <div><dt>Year</dt><dd>2023</dd></div>
+          <div><dt>Location</dt><dd>Bandra West, Mumbai</dd></div>
+          <div><dt>Area</dt><dd>2,400 sq ft</dd></div>
+          <div><dt>Scope</dt><dd>Interior Architecture, Renovation</dd></div>
+        </dl>
+        <p class="project-full-desc">A former textile godown on a quiet Bandra lane, stripped back to its cast-iron columns and timber trusses. The brief asked for a home that felt generous despite the narrow footprint, so the plan was opened into a single double-height room with a sleeping mezzanine above.</p>
+        <p class="project-full-desc">New insertions are deliberately legible — blackened steel, oak, and a run of full-height shelving that doubles as the stair balustrade. The original brickwork was repaired rather than hidden, keeping the building's working past in plain view.</p>
+        <div class="modal-gallery">
+          <!-- CONTENT: extra images for this project, each with data-lightbox="project-2" (800×600) -->
+          <img src="images/project-2.svg" width="800" height="600" loading="lazy" alt="Urban Loft Renovation — oak stair with full-height shelving balustrade" data-lightbox="project-2">
+        </div>
+      </div>
+    </div>
+    <nav class="project-nav" aria-label="Project navigation">
+      <a href="#project-1" class="prev">&larr; Previous</a>
+      <button class="modal-close-text" type="button">Close</button>
+      <a href="#project-3" class="next">Next &rarr;</a>
+    </nav>
+  </div>
+
+  <!-- CONTENT: Project 3 — Minimalist Office Space -->
+  <div class="project-modal" id="project-3" role="dialog" aria-modal="true" aria-labelledby="project-3-title" hidden>
+    <div class="modal-topbar">
+      <span class="project-num">03 / 06</span>
+      <button class="modal-close" type="button" aria-label="Close project details">&times;</button>
+    </div>
+    <div class="modal-content">
+      <div class="modal-hero">
+        <picture>
+          <!-- <source srcset="images/project-3.webp" type="image/webp"> -->
+          <img src="images/project-3.svg" width="800" height="600" loading="lazy" alt="Minimalist Office Space — pale ash workstations along a glazed perimeter" data-lightbox="project-3">
+        </picture>
+      </div>
+      <div class="container modal-body">
+        <span class="project-cat">Commercial</span>
+        <h2 id="project-3-title">Minimalist Office Space</h2>
+        <dl class="project-meta-grid">
+          <div><dt>Year</dt><dd>2023</dd></div>
+          <div><dt>Location</dt><dd>Bandra Kurla Complex, Mumbai</dd></div>
+          <div><dt>Area</dt><dd>9,800 sq ft</dd></div>
+          <div><dt>Scope</dt><dd>Workplace Design, Interiors, Wayfinding</dd></div>
+        </dl>
+        <p class="project-full-desc">Headquarters for a growing design-led fintech, planned around a central "street" that connects the reception, café and meeting rooms. Workstations sit along the glazed perimeter, so everyone gets daylight and the long city views.</p>
+        <p class="project-full-desc">A restrained palette of pale ash, raw concrete and warm grey felt keeps the floor calm across a long day. Acoustic ceiling rafts and sliding partitions let the space shift between quiet focus and all-hands gatherings without rebuilding anything.</p>
+        <div class="modal-gallery">
+          <!-- CONTENT: extra images for this project, each with data-lightbox="project-3" (800×600) -->
+          <img src="images/project-3.svg" width="800" height="600" loading="lazy" alt="Minimalist Office Space — central street with café and meeting rooms" data-lightbox="project-3">
+        </div>
+      </div>
+    </div>
+    <nav class="project-nav" aria-label="Project navigation">
+      <a href="#project-2" class="prev">&larr; Previous</a>
+      <button class="modal-close-text" type="button">Close</button>
+      <a href="#project-4" class="next">Next &rarr;</a>
+    </nav>
+  </div>
+
+  <!-- CONTENT: Project 4 — Boutique Hotel Lobby -->
+  <div class="project-modal" id="project-4" role="dialog" aria-modal="true" aria-labelledby="project-4-title" hidden>
+    <div class="modal-topbar">
+      <span class="project-num">04 / 06</span>
+      <button class="modal-close" type="button" aria-label="Close project details">&times;</button>
+    </div>
+    <div class="modal-content">
+      <div class="modal-hero">
+        <picture>
+          <!-- <source srcset="images/project-4.webp" type="image/webp"> -->
+          <img src="images/project-4.svg" width="800" height="600" loading="lazy" alt="Boutique Hotel Lobby — brass reception desk beneath a restored coffered ceiling" data-lightbox="project-4">
+        </picture>
+      </div>
+      <div class="container modal-body">
+        <span class="project-cat">Hospitality</span>
+        <h2 id="project-4-title">Boutique Hotel Lobby</h2>
+        <dl class="project-meta-grid">
+          <div><dt>Year</dt><dd>2022</dd></div>
+          <div><dt>Location</dt><dd>Colaba, Mumbai</dd></div>
+          <div><dt>Area</dt><dd>4,500 sq ft</dd></div>
+          <div><dt>Scope</dt><dd>Interiors, Lighting, Custom Furniture</dd></div>
+        </dl>
+        <p class="project-full-desc">The arrival sequence for a 28-key hotel in a restored Edwardian building. Guests pass from the noise of Colaba Causeway into a hushed, low-lit lobby where a single brass reception desk sits beneath the original coffered ceiling.</p>
+        <p class="project-full-desc">Custom pieces — a sixteen-foot terrazzo bar, cane-backed lounge chairs, hand-glazed tiles from Khurja — were developed with regional craftspeople. Layered lighting shifts from a bright morning check-in to an amber evening glow.</p>
+        <div class="modal-gallery">
+          <!-- CONTENT: extra images for this project, each with data-lightbox="project-4" (800×600) -->
+          <img src="images/project-4.svg" width="800" height="600" loading="lazy" alt="Boutique Hotel Lobby — terrazzo bar and cane-backed lounge chairs" data-lightbox="project-4">
+        </div>
+      </div>
+    </div>
+    <nav class="project-nav" aria-label="Project navigation">
+      <a href="#project-3" class="prev">&larr; Previous</a>
+      <button class="modal-close-text" type="button">Close</button>
+      <a href="#project-5" class="next">Next &rarr;</a>
+    </nav>
+  </div>
+
+  <!-- CONTENT: Project 5 — Riverside Residence -->
+  <div class="project-modal" id="project-5" role="dialog" aria-modal="true" aria-labelledby="project-5-title" hidden>
+    <div class="modal-topbar">
+      <span class="project-num">05 / 06</span>
+      <button class="modal-close" type="button" aria-label="Close project details">&times;</button>
+    </div>
+    <div class="modal-content">
+      <div class="modal-hero">
+        <picture>
+          <!-- <source srcset="images/project-5.webp" type="image/webp"> -->
+          <img src="images/project-5.svg" width="800" height="600" loading="lazy" alt="Riverside Residence — concrete frame and brick jali screens opening to the river" data-lightbox="project-5">
+        </picture>
+      </div>
+      <div class="container modal-body">
+        <span class="project-cat">Residential</span>
+        <h2 id="project-5-title">Riverside Residence</h2>
+        <dl class="project-meta-grid">
+          <div><dt>Year</dt><dd>2022</dd></div>
+          <div><dt>Location</dt><dd>Karjat, Maharashtra</dd></div>
+          <div><dt>Area</dt><dd>5,400 sq ft</dd></div>
+          <div><dt>Scope</dt><dd>Architecture, Interiors</dd></div>
+        </dl>
+        <p class="project-full-desc">A weekend house on the Ulhas river, built for three generations of one family. Bedrooms are gathered in two quiet wings, while a long, shaded pavilion holds the kitchen, dining and living rooms and opens fully to the water.</p>
+        <p class="project-full-desc">The structure is a simple exposed-concrete frame infilled with brick jali screens, which filter the monsoon glare and keep the air moving. A courtyard with a single mango tree sits at the heart of the plan.</p>
+        <div class="modal-gallery">
+          <!-- CONTENT: extra images for this project, each with data-lightbox="project-5" (800×600) -->
+          <img src="images/project-5.svg" width="800" height="600" loading="lazy" alt="Riverside Residence — courtyard with mango tree between the two bedroom wings" data-lightbox="project-5">
+        </div>
+      </div>
+    </div>
+    <nav class="project-nav" aria-label="Project navigation">
+      <a href="#project-4" class="prev">&larr; Previous</a>
+      <button class="modal-close-text" type="button">Close</button>
+      <a href="#project-6" class="next">Next &rarr;</a>
+    </nav>
+  </div>
+
+  <!-- CONTENT: Project 6 — Sustainable Pavilion -->
+  <div class="project-modal" id="project-6" role="dialog" aria-modal="true" aria-labelledby="project-6-title" hidden>
+    <div class="modal-topbar">
+      <span class="project-num">06 / 06</span>
+      <button class="modal-close" type="button" aria-label="Close project details">&times;</button>
+    </div>
+    <div class="modal-content">
+      <div class="modal-hero">
+        <picture>
+          <!-- <source srcset="images/project-6.webp" type="image/webp"> -->
+          <img src="images/project-6.svg" width="800" height="600" loading="lazy" alt="Sustainable Pavilion — folded timber canopy over an open lakefront gathering space" data-lightbox="project-6">
+        </picture>
+      </div>
+      <div class="container modal-body">
+        <span class="project-cat">Public Space</span>
+        <h2 id="project-6-title">Sustainable Pavilion</h2>
+        <dl class="project-meta-grid">
+          <div><dt>Year</dt><dd>2021</dd></div>
+          <div><dt>Location</dt><dd>Powai Lakefront, Mumbai</dd></div>
+          <div><dt>Area</dt><dd>3,000 sq ft</dd></div>
+          <div><dt>Scope</dt><dd>Architecture, Landscape, Community</dd></div>
+        </dl>
+        <p class="project-full-desc">A community pavilion on the Powai lakefront, commissioned by a residents' trust as a shared room for markets, classes and evening gatherings. The roof is a folded timber canopy that collects rainwater into a planted swale below.</p>
+        <p class="project-full-desc">Built from certified timber, recycled steel and compressed-earth blocks pressed on site, the pavilion runs entirely on rooftop solar. Its open sides let the lake breeze pass through, so no mechanical cooling was needed.</p>
+        <div class="modal-gallery">
+          <!-- CONTENT: extra images for this project, each with data-lightbox="project-6" (800×600) -->
+          <img src="images/project-6.svg" width="800" height="600" loading="lazy" alt="Sustainable Pavilion — evening market beneath the timber canopy" data-lightbox="project-6">
+        </div>
+      </div>
+    </div>
+    <nav class="project-nav" aria-label="Project navigation">
+      <a href="#project-5" class="prev">&larr; Previous</a>
+      <button class="modal-close-text" type="button">Close</button>
+      <a href="#project-1" class="next">Next &rarr;</a>
+    </nav>
+  </div>
+
+  <!-- Scripts (plain, no modules) -->
+  <script src="js/theme.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/filter.js"></script>
+  <script src="js/lightbox.js"></script>
 </body>
 </html>

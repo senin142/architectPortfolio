@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://senin142.github.io/architectPortfolio/sitemap.xml
