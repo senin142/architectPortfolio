@@ -1,4 +1,4 @@
-# Scroll House: Design (v2)
+# Scroll House: Design (v3, red-teamed; see the Red-Team Log in the plan)
 
 ## Intent
 
@@ -94,13 +94,14 @@ The label shows `0N / 07 — Name` plus one short caption, so the story is easy 
   - `x` is distributed across the 7 stages by weight (not by raw length): weights `[1, 1, 1.2, 1, 1, 1.2, 1.4]`.
 - **Per-kind render of stage fraction `f`:**
   - **line:** distribute `f` across the paths by length and set `dashoffset`.
-  - **brick:** reveal `floor(f·n)` courses, with the current course partially revealed via `scaleX`.
-  - **paint:** `clip-path: inset((1-f)·100% 0 0 0)` on the paint group; `.sh-services` opacity goes `1 → 0.18` as `f` goes `0 → 1`.
+  - **brick:** reveal bricks one by one, left → right within each course and bottom course first (`round(f·N)` bricks visible).
+  - **paint:** an SVG `<clipPath>` rect rises from the bottom (its attributes are set by JS, which is Safari-safe); `.sh-services` opacity goes `1 → 0.18` as `f` goes `0 → 1`.
   - **finish:** line rule for its paths, with `.sh-glow` opacity ramping in over the last 30%.
 - **Pen dot:** `circle.sh-dot` sits at the active tip. During paint it morphs (`scaleX` 3, `scaleY` 0.5) into a roller bar riding the wipe edge.
 - **Layer:**
   - `svg.scroll-house`: fixed, `pointer-events: none`, `aria-hidden`, `z-index: 50` (under the header and modals).
-  - Blend: `multiply` in light mode, `screen` in dark mode.
+  - No blend modes. Line colour follows the *tone* of the section under the viewport centre (dark sections such as Services and the footer, or dark theme → light lines).
+  - Solid surfaces (cards, images, form) sit above the layer, so lines never cross photos.
   - Hidden while the hero is on screen and while `body.modal-open`.
 - **Accessibility:** under `prefers-reduced-motion`, show the complete static house. Print hides it.
 

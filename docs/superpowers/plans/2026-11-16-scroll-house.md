@@ -1,4 +1,4 @@
-# Scroll House Implementation Plan (v2)
+# Scroll House Implementation Plan (v3, red-teamed)
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -17,9 +17,9 @@
 ## Global Constraints
 
 - No libraries, no build step, no ES modules.
-- Animate only `stroke-dashoffset`, `transform`, `opacity` and `clip-path`. There are no layout reads in the rAF loop; lengths are measured once and again on resize.
+- Animate only `stroke-dashoffset`, `transform`, `opacity`, and SVG attributes on the wipe `<rect>`. There are no layout reads in the rAF loop. Lengths and bboxes are measured **once**; resize only recomputes scroll `start`/`end` (RT6).
 - The rAF loop stops at rest; scroll listeners are passive.
-- The layer is `aria-hidden="true"`, `pointer-events: none`, `z-index: 50`. It is absent without JS or if the SVG fetch fails.
+- The layer is `aria-hidden="true"`, `pointer-events: none`, `z-index: 50`, `contain: strict`. Solid surfaces are lifted to `z-index: 51` (RT2). The layer is absent without JS or if the SVG fetch fails, and the fetch is deferred to idle after `load` (RT7).
 - Stage names (exact): `Layout`, `Frame`, `Brickwork`, `Plumbing`, `Electrical`, `Plaster & Paint`, `Home`.
 - Captions (exact):
   - "Marking the plot"
@@ -32,7 +32,7 @@
 - Label format: `0N / 07 — Name`.
 - Stage weights: `[1, 1, 1.2, 1, 1, 1.2, 1.4]`. Front-loading: `ease(0.2) ≈ 0.5`, so stages 1–3 are done by about 20% scroll.
 - Opacity: lines about 0.16 and paint washes about 0.10. Mobile is 0.8× those values.
-- Blend: `multiply` in light mode, `screen` under `[data-theme="dark"]`.
+- **No `mix-blend-mode`** (RT1). Tone class `.tone-dark` on the wrap is driven by the section under the viewport centre (`[data-tone="dark"]`) or by dark theme. Lines are `--text-primary` on light and `--text-on-dark` on dark.
 - Colours use only site tokens:
   - lines: `--text-primary`
   - pipes: `--accent-secondary`
@@ -40,15 +40,35 @@
   - paint: lime-white `#efe9dc` and ochre `#c9a46a` (dark theme: the same at reduced opacity)
   - glow: `--accent-gold`
 - New CSS uses only the `--ease-*` tokens (the site rule: no default `ease`).
-- Reduced motion shows the complete static house with no loop. Hidden in the hero and while `body.modal-open`. Print: `display: none`.
+- Reduced motion shows the complete static house and a static label `07 / 07 — Home` with no loop (RT13). Hidden and paused in the hero, while `body.modal-open` and while `body.nav-open` (RT11). Print: `display: none`.
+- Stage completion uses hysteresis: complete at `f ≥ 1`, incomplete at `f < 0.96` (RT3).
+- Motif budget (RT10): verandah with pillars, sloped Mangalore-tile roof, jaali, chhajja, overhead tank, tulsi planter, courtyard tree. Nothing else.
 
 ## Review Focus
 
 1. **A nav-link jump (`#contact`) or a fast fling across several stages.** The spring catches up. Settle-shakes fire at most once per forward completion and at most 2 at once, never in a storm (Task 1 `distribute` test; Task 4 jump check).
 2. **Resize or phone rotation while partly drawn.** Remeasure, and there are no gaps or stale offsets (Task 3 resize check).
-3. **Theme toggle mid-build.** The blend and colours switch, and the drawing state is kept (Task 3 dark check).
+3. **Theme toggle mid-build, or crossing from a light section into Services or the footer.** The line tone switches and the drawing state is kept (Task 4 tone check; Task 5 tone verification).
 4. **Loaded directly at `#project-3`, or already scrolled to the bottom on load.** It starts at the correct state with no replay from 0, and it is hidden behind the modal (Task 4 checks).
 5. **Out-of-range scroll** (iOS rubber-band negative `scrollY`, overscroll, a zero range). The progress is clamped and is never NaN (Task 1 tests).
+
+## Red-Team Log (v2 → v3)
+
+| # | Attack | Severity | Fix (folded into the tasks below) |
+| --- | --- | --- | --- |
+| RT1 | **Blend mode set per *theme* breaks on dark sections.** Services and the footer are `--bg-dark` even in light theme, so `multiply` turns ink lines invisible there. Blend modes also force costly compositing on mobile. | Critical | Drop `mix-blend-mode` entirely. Toggle a tone class (`.tone-dark`) from the section under the viewport centre (IntersectionObserver on `[data-tone="dark"]` sections: `.services`, `.site-footer`, plus everything in dark theme). Line colour crossfades over 0.4s. |
+| RT2 | **The drawing smears across photos and cards.** The layer sits above `main` (z 50), so lines cross project images, service cards and the form. That looks dirty, not premium. | High | "Lift solid surfaces": `.project-card, .about-image, .service-card, .testimonial-card, .contact-form, .stats-inner` get `position: relative; z-index: 51`. The house passes *behind* cards and images but over plain backgrounds and text gaps. The cards are already opaque; the form gets `background: var(--bg-primary)`. |
+| RT3 | **Spring overshoot flickers stage boundaries.** At a stage edge, overshoot crosses 1.0 and comes back, which fires a settle-shake and a "coming apart" drift on every small pause. | High | Hysteresis: a stage counts as complete at `f ≥ 1` and incomplete only at `f < 0.96`. Shake and drift fire only on those state flips. |
+| RT4 | **Safari support.** CSS `clip-path: inset()` on SVG `<g>` and `transform-box` on groups are unreliable in Safari. | High | Paint wipe uses an SVG `<clipPath id="sh-wipe"><rect/></clipPath>`; JS sets the rect's `y`/`height` attributes. The brick partial reveal goes **brick by brick** (opacity per brick, left → right in each course) instead of `scaleX`, which also reads more like real brick-laying. Shake transforms go on the wrapping `<g>` via the SVG `transform` attribute set from JS keyframes, not CSS `transform-box`. |
+| RT5 | **Repaint cost on mobile.** A full-viewport SVG repainting every frame (dashoffset and clip are paint, not composite) can jank cheap Android phones. | High | (a) Dirty-check: only touch stages whose fraction changed by more than 0.0005. (b) `.scroll-house-wrap { contain: strict; will-change: transform }` isolates repaints to its own layer. (c) The loop sleeps at rest. (d) Mobile skips `.sh-detail`-marked hatch strokes. (e) A target of 60fps at 4× CPU throttle (checked in Task 5). |
+| RT6 | **Resize storms on mobile.** The address bar showing and hiding fires `resize` constantly. Remeasuring path lengths each time is wasted, because they are in viewBox units and never change. | Medium | Measure lengths and bboxes **once** after inlining. On resize, recompute only the scroll `start`/`end` (debounced 150ms). |
+| RT7 | **The SVG fetch competes with first paint** (fonts, hero). | Medium | Fetch after `window.load` via `requestIdleCallback` (falling back to `setTimeout` 200ms). The hero hides the layer anyway, so nothing is lost. |
+| RT8 | **The label collides with content.** Bottom-left on mobile overlaps body text and the form button; it also sits on top of the 2px progress line. | Medium | The label becomes a compact pill with `background: color-mix(in srgb, var(--bg-primary) 82%, transparent)` and a solid fallback, at `left: 12px; bottom: 16px`. Its max width is 60vw on mobile and the caption is hidden ≤ 480px. It is also hidden when `body.nav-open`. |
+| RT9 | **"Easy to understand" is untestable.** Self-review by the person who drew it is biased. | Medium | An art gate in Task 2: render the 7 stage-only snapshots *without* labels and have a fresh subagent (who has not seen the spec) name each stage and the house's style. Any stage it can't name gets redrawn, for at most 2 rounds. |
+| RT10 | **Indian authenticity becomes cliché.** Too many motifs (toran, kalash, rangoli) turns it into clip-art. | Medium | Strict motif budget, exactly these: verandah with pillars, sloped Mangalore-tile roof, jaali, chhajja, overhead tank, tulsi planter, courtyard tree. Nothing else. |
+| RT11 | **The nav menu or modal is open and the layer animates underneath.** Wasted work and visual noise. | Low | Treat `body.nav-open` like `modal-open`: hide and pause the loop. |
+| RT12 | **Opening `index.html` as `file://`** makes the fetch fail silently, so a developer thinks the feature is broken. | Low | `console.info('[scroll-house] artwork not loaded (serve over http)')` on failure; documented in the CONTENT-GUIDE. |
+| RT13 | **Reduced motion and the label.** A static full house with a changing label is inconsistent. | Low | Reduced motion shows `07 / 07 — Home` statically. |
 
 ---
 
@@ -121,11 +141,12 @@ The design-heavy task; dispatch it on the most capable creative model.
 - `line`, `pipe`, `wire`, `finish`: child `<path class="sh-path">` elements, drawn in document order.
   - **Stage 0:** a *single* path, i.e. the reference-style flowing curve that lands as the ground line and pulls the plot outline taut.
   - **Stage 1:** its first path starts where stage 0 ended.
-- `brick`: child `<g class="sh-course">` rows ordered bottom row first, each containing short brick strokes (`<path>`) in alternating stagger bond. Leave the door and window openings empty.
+- `brick`: child `<g class="sh-course">` rows ordered bottom row first, each containing `<path class="sh-brick">` strokes ordered left → right in alternating stagger bond. Leave the door and window openings empty, and keep it to 160–240 bricks total.
 - `pipe` and `wire` groups also carry the class `sh-services`.
   - Pipes: runs from the overhead tank, with small valve and tap symbols as part of the paths.
   - Wires: from the meter box, with switch boxes as small squares and light points as small circles, all as paths.
-- `paint`: `<path class="sh-paint sh-paint--lime">` and `<path class="sh-paint sh-paint--ochre">` closed wall shapes (the upper box in lime-white, the ground floor accent wall in ochre). No stroke.
+- `paint`: `<path class="sh-paint sh-paint--lime">` and `<path class="sh-paint sh-paint--ochre">` closed wall shapes (the upper box in lime-white, the ground floor accent wall in ochre). No stroke. The group has `clip-path="url(#sh-wipe)"`, with `<defs><clipPath id="sh-wipe"><rect x="0" y="800" width="600" height="0"/></clipPath></defs>` (RT4).
+- Optional `class="sh-detail"` on hatch and secondary strokes, which mobile hides (RT5).
 - `finish`: `sh-path`s for the sloped terracotta-tile roof (tile courses as short parallel strokes), the jaali lattice, the chhajja, the carved door, the courtyard tree, the tulsi planter and 3 verandah pillars, plus `<rect|path class="sh-glow">` window light shapes.
 
 - [ ] **Step 1: Draw** the house exactly as described in the spec's "The house" section and stage table. Composition rules:
@@ -140,7 +161,10 @@ The design-heavy task; dispatch it on the most capable creative model.
 - [ ] **Step 3: Check it visually.** Render a preview with every stage visible (a temporary HTML page in the scratchpad that inlines the SVG with test colours: pipes sage, wires terracotta, paint at 0.3 opacity), screenshot it at 600×800, and view it.
   - Expected: it reads clearly as a contemporary Indian house with a verandah, sloped tile roof, jaali, chhajja and water tank.
   - Then screenshot each stage alone and confirm each is recognisable from its caption.
-- [ ] **Step 4: Commit** with `git add images/scroll-house.svg && git commit -m "feat(scroll-house): Indian house artwork, 7 stages"`.
+- [ ] **Step 4: Blind art gate (RT9).** Render the 7 cumulative stage snapshots with no labels and give them to a fresh subagent that has not seen the spec. Ask: "Name what construction step each image adds, and describe the house's architectural style."
+  - Pass: all 7 named correctly (synonyms are fine) and the style is described as Indian / Indian-contemporary.
+  - Redraw the failing stages, for at most 2 rounds.
+- [ ] **Step 5: Commit** with `git add images/scroll-house.svg && git commit -m "feat(scroll-house): Indian house artwork, 7 stages"`.
 
 ### Task 3: Layer, per-kind render, CSS
 
@@ -152,25 +176,30 @@ The design-heavy task; dispatch it on the most capable creative model.
   - `window.ScrollHouse = { ready: Promise, render(t), measure(), state }`.
   - DOM: `div.scroll-house-wrap` > the inlined `svg.scroll-house` (plus `circle.sh-dot`, r = 3.5, appended by JS); and `div.scroll-stage` > `span.scroll-stage-num` + `span.scroll-stage-name` + `span.scroll-stage-caption`.
 
-- [ ] **Step 1: Fetch and inline.** Only when `html.js` is set, run `fetch('images/scroll-house.svg')`, insert the SVG, and append the dot. On failure, do nothing (the `ready` promise resolves to `false`).
-- [ ] **Step 2: `measure()`.**
+- [ ] **Step 1: Fetch and inline.** Only when `html.js` is set, after `load` plus `requestIdleCallback` (falling back to a 200ms timeout), run `fetch('images/scroll-house.svg')`, insert the SVG, and append the dot. On failure, call `console.info('[scroll-house] artwork not loaded (serve over http)')` and resolve `ready` to `false` (RT7, RT12).
+- [ ] **Step 2: `measure()`.** This runs once (RT6).
   - For line-kind paths, cache `getTotalLength()` and set `stroke-dasharray`.
-  - For brick, cache the course nodes.
-  - Debounce a remeasure on resize (150 ms), then re-render the current `x`.
+  - For brick, cache the brick nodes in order with their `getBBox()` right-edge points (for the dot).
+  - Cache the wipe `<rect>`.
+  - A separate `measureScroll()` handles `start`/`end` and is the only thing re-run on resize (debounced 150ms).
 - [ ] **Step 3: `render(t)`.** Compute `fractions = distribute(t, WEIGHTS)`, then apply the per-kind rules from the spec's "Per-kind render" list:
   - **line:** distribute across paths by length and set `dashoffset`.
-  - **brick:** set courses to `opacity` 1 or 0, with the current course at `transform: scaleX(partial)`, `transform-box: fill-box`, origin left.
-  - **paint:** `clip-path: inset(${(1-f)*100}% 0 0 0)` on the group, and `.sh-services` opacity `1 - 0.82f`.
+  - **brick:** reveal the first `round(f·N)` bricks (`opacity` 1, the rest 0), toggling only the bricks whose state changed (RT4, RT5).
+  - **paint:** set the wipe rect `y = 800 - 800f` and `height = 800f`; `.sh-services` opacity is `1 - 0.82f`.
+  - **All kinds:** skip a stage whose fraction changed by ≤ 0.0005 since the last render (RT5).
   - **finish:** the line rule, with `.sh-glow` opacity `clamp01((f - 0.7) / 0.3)`.
-  - **Dot:** position it at the active tip via `getPointAtLength`. For brick, use the right end of the current course's revealed part; for paint, use the wipe edge at the centre x with the roller morph.
+  - **Dot:** position it at the active tip via `getPointAtLength`. For brick, use the cached right edge of the last revealed brick; for paint, use the wipe edge at x = 300 with the roller morph.
   - **Label:** update the number, name and caption from `stageIndex`.
 - [ ] **Step 4: CSS** (new section).
-  - `.scroll-house-wrap`: fixed, `inset: 0`, `pointer-events: none`, `z-index: 50`.
+  - `.scroll-house-wrap`: fixed, `inset: 0`, `pointer-events: none`, `z-index: 50`, `contain: strict`, `will-change: transform`.
+  - Lift solid surfaces (RT2): `.project-card, .about-image, .service-card, .testimonial-card, .contact-form, .stats-inner { position: relative; z-index: 51 }` and `.contact-form { background: var(--bg-primary) }`. Check that the existing hover, overlay and curtain stacking still works.
+  - Tone (RT1): `.scroll-house-wrap.tone-dark` swaps the line colour to `--text-on-dark` with a 0.4s `var(--ease-out)` colour transition. Add `data-tone="dark"` to `section.services` and `footer.site-footer` in `index.html`.
+  - Mobile (`max-width: 768px`): `.sh-detail { display: none }`.
   - `svg.scroll-house`: desktop (`min-width: 1025px`) `position: absolute; right: 2vw; top: 4vh; height: 92vh; width: auto`; below that, centred `height: 88svh`.
   - Line opacity and colours per Global Constraints, set via `.sh-stage[data-kind=…]` selectors.
-  - `.scroll-stage`: fixed `left: 14px; bottom: 24px`. Number in `--font-display`, name in Inter 0.65rem uppercase with letter-spacing 0.2em, caption in Cormorant italic 0.95rem in `--text-secondary`.
-  - Hide the caption at `max-width: 380px`.
-  - Blend modes per theme; `@media print { display: none }`.
+  - `.scroll-stage` (RT8): a fixed pill at `left: 12px; bottom: 16px`, `z-index: 60`, padding `6px 12px`, `background: var(--bg-primary)` then `background: color-mix(in srgb, var(--bg-primary) 82%, transparent)`, `border: 1px solid var(--border-light)`, max width 60vw on mobile. Number in `--font-display`, name in Inter 0.65rem uppercase with letter-spacing 0.2em, caption in Cormorant italic 0.95rem in `--text-secondary`.
+  - Hide the caption at `max-width: 480px`.
+  - `@media print { display: none }`.
 - [ ] **Step 5: Add the scripts** to `index.html` after `js/lightbox.js`: `js/scroll-house-math.js`, then `js/scroll-house.js`.
 - [ ] **Step 6: Check it visually.** Serve with `python3 -m http.server 8791 --bind 127.0.0.1`. Run `python3 tools/shot.py out.png W --noscroll --eval "ScrollHouse.ready.then(()=>ScrollHouse.render(T))"` with T at each stage midpoint and 1, at W = 1440 and W = 375, plus `--dark` at T = 1.
   - Expected: each stage is recognisable with the correct label; the text stays readable; the dot sits at the tip.
@@ -187,7 +216,9 @@ The design-heavy task; dispatch it on the most capable creative model.
 
 - [ ] **Step 1: Progress.** In `measure()`: `start = hero.offsetTop + hero.offsetHeight - innerHeight * 0.5` and `end = scrollHeight - innerHeight`. On scroll: `target = ease(scrollProgress(scrollY, start, end))`, then wake the loop.
 - [ ] **Step 2: Loop.** Use rAF with a timestamp `dt`: `springStep`, then `render(x)`. When `isAtRest`, snap to `target`, do a final render and stop. On first load, set `x = target` directly (no replay; Review Focus 4).
-- [ ] **Step 3: Visibility.** Toggle `.is-hidden` when `scrollY < start` or `body.modal-open`, watching the modal via a `MutationObserver` on the body `class`.
+- [ ] **Step 3: Visibility and tone.**
+  - Toggle `.is-hidden` (and pause the loop) when `scrollY < start`, `body.modal-open` or `body.nav-open`, watching via a `MutationObserver` on the body `class` (RT11).
+  - Tone: an IntersectionObserver with `rootMargin: '-50% 0px -50% 0px'` on `[data-tone="dark"]` toggles `.tone-dark`. It is forced on when `html[data-theme="dark"]` (watched via a MutationObserver on `<html>`) (RT1).
 - [ ] **Step 4: Reduced motion.** Call `render(1)` once and attach no loop. The visibility rules still apply.
 - [ ] **Step 5: Checks.**
   - Default scroll pass with `--eval "JSON.stringify(ScrollHouse.state)"`. Expected: `"running":false`.
@@ -202,13 +233,14 @@ The design-heavy task; dispatch it on the most capable creative model.
 **Interfaces:** produces the classes `.sh-stage.is-settling` (removed on `animationend`) and `.sh-stage.is-coming-apart`.
 
 - [ ] **Step 1: Settle-shake.**
-  - In `render`, add `.is-settling` on a stage's forward transition `<1 → 1`, unless it is already settling, and never on more than 2 stages at once.
-  - Keyframe `sh-settle` over 420ms with `var(--ease-snap)`: translate `0 → (2,-1) → (-1.5,1) → (0.5,0) → 0` px with a ±0.4° rotate; `transform-box: fill-box; transform-origin: center`.
-  - Brick stage: also a 1px vertical "thud" of the whole layer for 180ms.
+  - Track a `complete[]` flag per stage with hysteresis (on at `f ≥ 1`, off at `f < 0.96`; RT3).
+  - On an off → on flip, start a shake unless that stage is already shaking, and never with more than 2 stages shaking at once.
+  - The shake is JS-driven inside the existing loop (RT4): set the stage `<g>`'s `transform` attribute to `translate(dx dy) rotate(r cx cy)` from a decaying sine, with amplitude 2.5px and 0.4° over 420ms, using the stage bbox centre cached in `measure()`. The loop stays awake until the shakes end.
+  - The `.is-settling` class is still toggled for testability.
+  - Brick stage completion also gives a 1px vertical "thud" of the whole wrap for 180ms (CSS class on the wrap, transform only).
 - [ ] **Step 2: Deconstruct drift.**
-  - On `1 → <1`, add `.is-coming-apart`: `translate(var(--dx), var(--dy))` over 0.5s `var(--ease-reveal)`.
-  - JS sets per-stage `--dx`/`--dy` (4–8px, pointing away from the house centre).
-  - Remove the class when the fraction returns to 1.
+  - On an on → off flip, add `.is-coming-apart` and animate the stage `<g>` `transform` attribute toward a per-stage offset (4–8px, pointing away from the house centre: stage 0 down, 1 left, 2 down, 3 right, 4 left, 5 up, 6 outward) with the same spring.
+  - It returns to 0 on the next off → on flip.
 - [ ] **Step 3: Pen squash.** The dot scale is `1 + min(|v|·0.6, 0.5)`, set inline (it composes with the roller morph during paint).
 - [ ] **Step 4: Label crossfade.** When the stage changes, use a 0.3s opacity and translateY(6px) swap.
 - [ ] **Step 5: Docs.**
@@ -223,4 +255,7 @@ The design-heavy task; dispatch it on the most capable creative model.
   - Scroll-up sequence (bottom → 30%, wait 0.15s, screenshot). Expected: later stages un-drawing and offset.
   - Jump: `location.hash='#contact'`, then count `.is-settling` at 50ms (≤ 2) and at 1s (0).
   - No console errors; `scrollWidth` equals the viewport width.
+  - **Perf (RT5):** use CDP `Emulation.setCPUThrottlingRate {rate: 4}` at 375, scroll programmatically for 3s, and sample `requestAnimationFrame` deltas. Expected: median ≤ 17ms and p95 ≤ 33ms.
+  - **Tone (RT1):** in the light theme, scroll so that Services is centred. Expected: the wrap has `.tone-dark` and the lines are visible in the screenshot.
+  - **Lift (RT2):** a screenshot over the project grid shows no lines crossing the card images.
 - [ ] **Step 7: Commit** with `git commit -am "feat(scroll-house): kinetics, label crossfade, docs"`.
