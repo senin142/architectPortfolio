@@ -89,8 +89,13 @@ Colours and fonts are design tokens at the top of `css/style.css` in `:root`. Th
 ### Scroll house (the background drawing)
 
 - **Stage names and captions:** edit the `STAGES` array at the top of `js/scroll-house.js`.
-- **Artwork:** `images/scroll-house.svg`. To redraw it, keep its structure:
-  - 7 `<g class="sh-stage" data-stage="0–6" data-kind="…">` groups, in order: line, line, brick, pipe, wire, paint, finish.
+- **Artwork:** two drawings in the same coordinates (`viewBox 0 280 600 540`). They hinge on the front wall / ground line at y = 740, and their grid axes line up at x = 95, 300, 400 and 500:
+  - `images/scroll-house-plan.svg`: the floor plan, stages 0–2.
+  - `images/scroll-house.svg`: the front elevation, stages 3–7. Stage 3 is the fold from plan to elevation.
+
+  To redraw either, keep its structure:
+  - `<g class="sh-stage" data-stage="N" data-kind="line|brick|pipe|wire|paint|finish">` groups. Several groups can share a stage number; they draw in order.
+  - Annotations are `<text class="sh-note">`. Line weights use the classes `sh-heavy`, `sh-thin` and `sh-detail`.
   - Strokes are `class="sh-path"` and bricks are `class="sh-brick"`.
   - The paint group uses `clip-path="url(#sh-wipe)"`.
 - **The drawing pauses while the project grid is on screen.** This is intentional, so your work stays the focus.

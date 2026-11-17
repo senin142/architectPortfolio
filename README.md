@@ -15,7 +15,7 @@ Each animation is meant to look like part of designing a building:
 | Gold curtain that slides off to reveal an image | Project cards |
 | Angled clip-path reveals | About portrait, process steps |
 | Scroll progress line along the left edge | Whole page |
-| Scroll house: a pen builds an Indian home in 7 construction stages (layout, frame, brick, plumbing, electrical, paint, home) as you scroll, and takes it apart when you scroll back up | Background, from the stats strip to the footer |
+| Scroll house: lines fly in from the screen edges and draw a professional floor plan (grid, walls, services). The plan then folds up in 3D into the front elevation, which is built frame → brick → paint → home. Scrolling up reverses it all | Background, from the stats strip to the footer |
 
 The page also has a light and dark theme with no flash of the wrong theme on load, and it honours `prefers-reduced-motion`. With JavaScript turned off, all content is still visible.
 

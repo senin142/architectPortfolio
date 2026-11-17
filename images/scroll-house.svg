@@ -1,13 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 280 600 540" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
 <defs>
 <clipPath id="sh-wipe"><rect x="0" y="800" width="600" height="0"/></clipPath>
 <radialGradient id="sh-glow-grad"><stop offset="0" class="sh-glow-stop"/><stop offset="1" class="sh-glow-stop sh-glow-stop--out"/></radialGradient>
 </defs>
-<g class="sh-stage" data-stage="0" data-kind="line" stroke-linecap="round">
-<path class="sh-path sh-lead" d="M196 404C116 404 50 456 34 540C22 604 0 740 24 740"/>
-<path class="sh-path" d="M24 740H16V726V740H584V726V740H511V758H84V740H16V778L10 784L22 772L16 778H584L590 772L578 784L584 778V740"/>
+<g class="sh-stage" data-stage="3" data-kind="line">
+<path class="sh-path sh-heavy" d="M24 740H16V726V740H584V726V740H511V758H84V740H16V778L10 784L22 772L16 778H584L590 772L578 784L584 778V740"/>
+
+<path class="sh-path sh-thin" d="M95 295a9 9 0 1 1 -0.01 0Z"/>
+<path class="sh-path sh-thin" d="M95 314v14M95 332v2M95 338v14M95 356v2M95 362v14M95 380v2M95 386v14M95 404v2M95 410v14M95 428v2M95 434v14M95 452v2M95 458v14M95 476v2M95 482v14M95 500v2M95 506v14M95 524v2M95 530v14M95 548v2M95 554v14M95 572v2M95 578v14M95 596v2M95 602v14M95 620v2M95 626v14M95 644v2M95 650v14M95 668v2M95 674v14M95 692v2M95 698v14M95 716v2M95 722v14M95 740v2M95 746v14M95 764v2M95 770v14M95 788v2"/>
+<text class="sh-note" x="95" y="307" font-family="Inter, sans-serif" font-size="8" letter-spacing="1.4" fill="currentColor" stroke="none" text-anchor="middle">A</text>
+<path class="sh-path sh-thin" d="M300 295a9 9 0 1 1 -0.01 0Z"/>
+<path class="sh-path sh-thin" d="M300 314v14M300 332v2M300 338v14M300 356v2M300 362v14M300 380v2M300 386v14M300 404v2M300 410v14M300 428v2M300 434v14M300 452v2M300 458v14M300 476v2M300 482v14M300 500v2M300 506v14M300 524v2M300 530v14M300 548v2M300 554v14M300 572v2M300 578v14M300 596v2M300 602v14M300 620v2M300 626v14M300 644v2M300 650v14M300 668v2M300 674v14M300 692v2M300 698v14M300 716v2M300 722v14M300 740v2M300 746v14M300 764v2M300 770v14M300 788v2"/>
+<text class="sh-note" x="300" y="307" font-family="Inter, sans-serif" font-size="8" letter-spacing="1.4" fill="currentColor" stroke="none" text-anchor="middle">B</text>
+<path class="sh-path sh-thin" d="M400 295a9 9 0 1 1 -0.01 0Z"/>
+<path class="sh-path sh-thin" d="M400 314v14M400 332v2M400 338v14M400 356v2M400 362v14M400 380v2M400 386v14M400 404v2M400 410v14M400 428v2M400 434v14M400 452v2M400 458v14M400 476v2M400 482v14M400 500v2M400 506v14M400 524v2M400 530v14M400 548v2M400 554v14M400 572v2M400 578v14M400 596v2M400 602v14M400 620v2M400 626v14M400 644v2M400 650v14M400 668v2M400 674v14M400 692v2M400 698v14M400 716v2M400 722v14M400 740v2M400 746v14M400 764v2M400 770v14M400 788v2"/>
+<text class="sh-note" x="400" y="307" font-family="Inter, sans-serif" font-size="8" letter-spacing="1.4" fill="currentColor" stroke="none" text-anchor="middle">C</text>
+<path class="sh-path sh-thin" d="M500 295a9 9 0 1 1 -0.01 0Z"/>
+<path class="sh-path sh-thin" d="M500 314v14M500 332v2M500 338v14M500 356v2M500 362v14M500 380v2M500 386v14M500 404v2M500 410v14M500 428v2M500 434v14M500 452v2M500 458v14M500 476v2M500 482v14M500 500v2M500 506v14M500 524v2M500 530v14M500 548v2M500 554v14M500 572v2M500 578v14M500 596v2M500 602v14M500 620v2M500 626v14M500 644v2M500 650v14M500 668v2M500 674v14M500 692v2M500 698v14M500 716v2M500 722v14M500 740v2M500 746v14M500 764v2M500 770v14M500 788v2"/>
+<text class="sh-note" x="500" y="307" font-family="Inter, sans-serif" font-size="8" letter-spacing="1.4" fill="currentColor" stroke="none" text-anchor="middle">D</text>
+<path class="sh-path sh-thin" d="M40 740H88M44 732L52 732L48 740Z"/>
+<text class="sh-note" x="12" y="729" font-family="Inter, sans-serif" font-size="7.5" letter-spacing="1.4" fill="currentColor" stroke="none">±0.00 GL</text>
+<path class="sh-path sh-thin" d="M40 700H88M44 692L52 692L48 700Z"/>
+<text class="sh-note" x="12" y="689" font-family="Inter, sans-serif" font-size="7.5" letter-spacing="1.4" fill="currentColor" stroke="none">+0.45 PL</text>
+<path class="sh-path sh-thin" d="M40 538H88M44 530L52 530L48 538Z"/>
+<text class="sh-note" x="12" y="527" font-family="Inter, sans-serif" font-size="7.5" letter-spacing="1.4" fill="currentColor" stroke="none">+3.30 FFL</text>
+<path class="sh-path sh-thin" d="M40 403H88M44 395L52 395L48 403Z"/>
+<text class="sh-note" x="12" y="392" font-family="Inter, sans-serif" font-size="7.5" letter-spacing="1.4" fill="currentColor" stroke="none">+6.60 TOS</text>
+<path class="sh-path sh-detail" d="M28 742l-9 11M37 742l-9 11M46 742l-9 11M55 742l-9 11M64 742l-9 11M73 742l-9 11M82 742l-9 11M520 742l-9 11M529 742l-9 11M538 742l-9 11M547 742l-9 11M556 742l-9 11M565 742l-9 11M574 742l-9 11M583 742l-9 11"/>
+<path class="sh-path sh-thin" d="M95 798H500M95 788V804M92 801l6 -6M300 788V804M297 801l6 -6M400 788V804M397 801l6 -6M500 788V804M497 801l6 -6"/>
+<text class="sh-note" x="197" y="793" font-family="Inter, sans-serif" font-size="7.5" letter-spacing="1.4" fill="currentColor" stroke="none" text-anchor="middle">6150</text>
+<text class="sh-note" x="350" y="793" font-family="Inter, sans-serif" font-size="7.5" letter-spacing="1.4" fill="currentColor" stroke="none" text-anchor="middle">3000</text>
+<text class="sh-note" x="450" y="793" font-family="Inter, sans-serif" font-size="7.5" letter-spacing="1.4" fill="currentColor" stroke="none" text-anchor="middle">3000</text>
 </g>
-<g class="sh-stage" data-stage="1" data-kind="line">
+<g class="sh-stage" data-stage="4" data-kind="line">
 <path class="sh-path" d="M584 740H505V700H90H78V713H66V727H54V740"/>
 <path class="sh-path" d="M90 700V550M100 550V700M295 700V550M305 550V700M395 700V550M405 550V700M495 700V550M505 550V700"/>
 <path class="sh-path" d="M90 550H505V538H90Z"/>
@@ -16,7 +41,7 @@
 <path class="sh-path" d="M295 391V371H520V391"/>
 <path class="sh-path" d="M406 578H484V570H406Z"/>
 </g>
-<g class="sh-stage" data-stage="2" data-kind="brick">
+<g class="sh-stage" data-stage="5" data-kind="brick">
 <g class="sh-course"><path class="sh-brick" d="M100 687h21v11h-21z"/><path class="sh-brick" d="M125 687h21v11h-21z"/><path class="sh-brick" d="M150 687h21v11h-21z"/><path class="sh-brick" d="M175 687h21v11h-21z"/><path class="sh-brick" d="M200 687h8v11h-8z"/><path class="sh-brick" d="M256 687h15v11h-15z"/><path class="sh-brick" d="M275 687h20v11h-20z"/><path class="sh-brick" d="M305 687h21v11h-21z"/><path class="sh-brick" d="M330 687h21v11h-21z"/><path class="sh-brick" d="M355 687h21v11h-21z"/><path class="sh-brick" d="M380 687h15v11h-15z"/><path class="sh-brick" d="M405 687h21v11h-21z"/><path class="sh-brick" d="M430 687h21v11h-21z"/><path class="sh-brick" d="M455 687h21v11h-21z"/><path class="sh-brick" d="M480 687h15v11h-15z"/></g>
 <g class="sh-course"><path class="sh-brick" d="M100 672h8.5v11h-8.5z"/><path class="sh-brick" d="M112.5 672h21v11h-21z"/><path class="sh-brick" d="M137.5 672h21v11h-21z"/><path class="sh-brick" d="M162.5 672h21v11h-21z"/><path class="sh-brick" d="M187.5 672h21v11h-21z"/><path class="sh-brick" d="M262.5 672h21v11h-21z"/><path class="sh-brick" d="M287.5 672h7.5v11h-7.5z"/><path class="sh-brick" d="M305 672h8.5v11h-8.5z"/><path class="sh-brick" d="M317.5 672h21v11h-21z"/><path class="sh-brick" d="M342.5 672h21v11h-21z"/><path class="sh-brick" d="M367.5 672h21v11h-21z"/><path class="sh-brick" d="M405 672h8.5v11h-8.5z"/><path class="sh-brick" d="M417.5 672h21v11h-21z"/><path class="sh-brick" d="M442.5 672h21v11h-21z"/><path class="sh-brick" d="M467.5 672h21v11h-21z"/></g>
 <g class="sh-course"><path class="sh-brick" d="M100 657h21v11h-21z"/><path class="sh-brick" d="M125 657h21v11h-21z"/><path class="sh-brick" d="M150 657h21v11h-21z"/><path class="sh-brick" d="M175 657h21v11h-21z"/><path class="sh-brick" d="M200 657h8v11h-8z"/><path class="sh-brick" d="M256 657h15v11h-15z"/><path class="sh-brick" d="M275 657h20v11h-20z"/><path class="sh-brick" d="M305 657h21v11h-21z"/><path class="sh-brick" d="M330 657h21v11h-21z"/><path class="sh-brick" d="M355 657h21v11h-21z"/><path class="sh-brick" d="M380 657h15v11h-15z"/><path class="sh-brick" d="M405 657h21v11h-21z"/><path class="sh-brick" d="M430 657h21v11h-21z"/><path class="sh-brick" d="M455 657h21v11h-21z"/><path class="sh-brick" d="M480 657h15v11h-15z"/></g>
@@ -37,7 +62,7 @@
 <g class="sh-course"><path class="sh-brick" d="M305 420h21v11h-21z"/><path class="sh-brick" d="M330 420h21v11h-21z"/><path class="sh-brick" d="M355 420h21v11h-21z"/><path class="sh-brick" d="M380 420h15v11h-15z"/><path class="sh-brick" d="M405 420h21v11h-21z"/><path class="sh-brick" d="M430 420h21v11h-21z"/><path class="sh-brick" d="M455 420h21v11h-21z"/><path class="sh-brick" d="M480 420h15v11h-15z"/></g>
 <g class="sh-course"><path class="sh-brick" d="M305 405h8.5v11h-8.5z"/><path class="sh-brick" d="M317.5 405h21v11h-21z"/><path class="sh-brick" d="M342.5 405h21v11h-21z"/><path class="sh-brick" d="M367.5 405h21v11h-21z"/><path class="sh-brick" d="M405 405h8.5v11h-8.5z"/><path class="sh-brick" d="M417.5 405h21v11h-21z"/><path class="sh-brick" d="M442.5 405h21v11h-21z"/><path class="sh-brick" d="M467.5 405h21v11h-21z"/></g>
 </g>
-<g class="sh-stage" data-stage="3" data-kind="pipe"><g class="sh-services">
+<g class="sh-stage" data-stage="5" data-kind="pipe"><g class="sh-services">
 <path class="sh-path" d="M436 371V321Q436 303 470 303Q504 303 504 321V371Z"/>
 <path class="sh-path" d="M462 303V296H478V303"/>
 <path class="sh-path sh-detail" d="M436 335H504M436 353H504"/>
@@ -48,7 +73,7 @@
 <path class="sh-path" d="M486 668H332V678H324"/>
 <path class="sh-path" d="M440 668V678H432"/>
 </g></g>
-<g class="sh-stage" data-stage="4" data-kind="wire"><g class="sh-services">
+<g class="sh-stage" data-stage="5" data-kind="wire"><g class="sh-services">
 <path class="sh-path" d="M310 604H330V630H310ZM314 610H326V615H314Z"/>
 <path class="sh-path" d="M320 604V556"/>
 <path class="sh-path" d="M320 556H480"/>
@@ -60,11 +85,11 @@
 <path class="sh-path" d="M368 462h8v8h-8ZM372 466l7 -7"/>
 <path class="sh-path" d="M440 403V418M440 422m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0M437.2 419.2l5.6 5.6M442.8 419.2l-5.6 5.6"/>
 </g></g>
-<g class="sh-stage" data-stage="5" data-kind="paint" clip-path="url(#sh-wipe)" stroke="none">
+<g class="sh-stage" data-stage="6" data-kind="paint" clip-path="url(#sh-wipe)" stroke="none">
 <path class="sh-paint sh-paint--lime" fill-rule="evenodd" d="M295 403H505V538H295ZM316 433H356V523H316ZM408 448H476V478H408Z"/>
 <path class="sh-paint sh-paint--ochre" fill-rule="evenodd" d="M90 550H505V700H254V595H210V700H90ZM416 595H476V655H416Z"/>
 </g>
-<g class="sh-stage" data-stage="6" data-kind="finish">
+<g class="sh-stage" data-stage="7" data-kind="finish">
 <path class="sh-path" d="M90 538H62V530L120 446H295M62 530H295"/>
 <path class="sh-path" d="M295 458q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0M295 470q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0M295 482q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0M295 494q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0M295 506q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0M295 518q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0q-7 -4 -14 0"/>
 <path class="sh-path sh-detail" d="M281 448.5v7M267 448.5v7M253 448.5v7M239 448.5v7M225 448.5v7M211 448.5v7M197 448.5v7M183 448.5v7M169 448.5v7M155 448.5v7M141 448.5v7M127 448.5v7M288 460.5v7M274 460.5v7M260 460.5v7M246 460.5v7M232 460.5v7M218 460.5v7M204 460.5v7M190 460.5v7M176 460.5v7M162 460.5v7M148 460.5v7M134 460.5v7M120 460.5v7M281 472.5v7M267 472.5v7M253 472.5v7M239 472.5v7M225 472.5v7M211 472.5v7M197 472.5v7M183 472.5v7M169 472.5v7M155 472.5v7M141 472.5v7M127 472.5v7M113 472.5v7M288 484.5v7M274 484.5v7M260 484.5v7M246 484.5v7M232 484.5v7M218 484.5v7M204 484.5v7M190 484.5v7M176 484.5v7M162 484.5v7M148 484.5v7M134 484.5v7M120 484.5v7M106 484.5v7M281 496.5v7M267 496.5v7M253 496.5v7M239 496.5v7M225 496.5v7M211 496.5v7M197 496.5v7M183 496.5v7M169 496.5v7M155 496.5v7M141 496.5v7M127 496.5v7M113 496.5v7M99 496.5v7M288 508.5v7M274 508.5v7M260 508.5v7M246 508.5v7M232 508.5v7M218 508.5v7M204 508.5v7M190 508.5v7M176 508.5v7M162 508.5v7M148 508.5v7M134 508.5v7M120 508.5v7M106 508.5v7M92 508.5v7M78 508.5v7M281 520.5v7M267 520.5v7M253 520.5v7M239 520.5v7M225 520.5v7M211 520.5v7M197 520.5v7M183 520.5v7M169 520.5v7M155 520.5v7M141 520.5v7M127 520.5v7M113 520.5v7M99 520.5v7M85 520.5v7M71 520.5v7"/>
@@ -82,5 +107,13 @@
 <ellipse class="sh-glow" fill="url(#sh-glow-grad)" stroke="none" opacity="0" cx="446" cy="625" rx="54" ry="50"/>
 <ellipse class="sh-glow" fill="url(#sh-glow-grad)" stroke="none" opacity="0" cx="232" cy="648" rx="44" ry="70"/>
 <ellipse class="sh-glow" fill="url(#sh-glow-grad)" stroke="none" opacity="0" cx="336" cy="478" rx="40" ry="66"/>
+
+<path class="sh-path sh-thin" d="M150 412H170L232 486"/>
+<text class="sh-note" x="30" y="415" font-family="Inter, sans-serif" font-size="8" letter-spacing="1.4" fill="currentColor" stroke="none">MANGALORE TILE ROOF</text>
+<path class="sh-path sh-thin" d="M108 372H130L318 470"/>
+<text class="sh-note" x="30" y="375" font-family="Inter, sans-serif" font-size="8" letter-spacing="1.4" fill="currentColor" stroke="none">JAALI SCREEN</text>
+<path class="sh-path sh-thin" d="M150 333H434"/>
+<text class="sh-note" x="30" y="336" font-family="Inter, sans-serif" font-size="8" letter-spacing="1.4" fill="currentColor" stroke="none">OVERHEAD WATER TANK</text>
+<text class="sh-note" x="12" y="816" font-family="Inter, sans-serif" font-size="8.5" letter-spacing="1.4" fill="currentColor" stroke="none">FRONT ELEVATION · 1:100</text>
 </g>
 </svg>

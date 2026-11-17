@@ -1083,12 +1083,19 @@ section { padding: var(--section-padding) 0; }
 .scroll-house-wrap.is-thud { animation: sh-thud 0.18s var(--ease-snap); }
 @keyframes sh-thud { 50% { transform: translateY(1px); } }
 
-.scroll-house { position: absolute; overflow: visible; }
-@media (min-width: 1025px) { .scroll-house { right: 2vw; bottom: 15vh; height: 66vh; width: auto; } }
+.scroll-house { position: absolute; aspect-ratio: 600 / 540; perspective: 1600px; perspective-origin: 50% 85%; }
+.sh-view { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.sh-fly { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.sh-fly-line { fill: none; stroke: var(--accent-gold); stroke-width: 1; stroke-linecap: round; opacity: 0.55; }
+.sh-heavy { stroke-width: 2.2; }
+.sh-thin { stroke-width: 0.6; }
+.sh-note { opacity: 0; transition: opacity 0.5s var(--ease-out); }
+.sh-stage.is-noted .sh-note { opacity: 0.42; }
+@media (min-width: 1025px) { .scroll-house { right: 2vw; bottom: 15vh; height: 66vh; } }
 @media (min-width: 769px) and (max-width: 1024px) {
-  .scroll-house { left: 50%; bottom: 12vh; height: 60vh; height: 60svh; width: auto; transform: translateX(-50%); }
+  .scroll-house { left: 50%; bottom: 12vh; height: 60vh; height: 60svh; transform: translateX(-50%); }
 }
-@media (max-width: 768px) { .scroll-house { right: 0; bottom: 64px; width: 100vw; height: auto; } }
+@media (max-width: 768px) { .scroll-house { right: 0; bottom: 64px; width: 100vw; } .sh-note { display: none; } }
 
 /* stroke opacity lives on the strokes, so the window glow inside a stage keeps its own */
 .sh-stage { --o: 0.16; }
