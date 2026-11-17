@@ -86,6 +86,17 @@ At the moment the form validates the input and shows a thank-you note, but it do
 
 Colours and fonts are design tokens at the top of `css/style.css` in `:root`. The dark theme overrides them under `[data-theme="dark"]`. Change a token once and it updates everywhere.
 
+### Scroll house (the background drawing)
+
+- **Stage names and captions:** edit the `STAGES` array at the top of `js/scroll-house.js`.
+- **Artwork:** `images/scroll-house.svg`. To redraw it, keep its structure:
+  - 7 `<g class="sh-stage" data-stage="0–6" data-kind="…">` groups, in order: line, line, brick, pipe, wire, paint, finish.
+  - Strokes are `class="sh-path"` and bricks are `class="sh-brick"`.
+  - The paint group uses `clip-path="url(#sh-wipe)"`.
+- **The drawing pauses while the project grid is on screen.** This is intentional, so your work stays the focus.
+- **It only works over http** (GitHub Pages, or `python3 -m http.server`). Opening `index.html` straight from disk skips it.
+- **To turn it off:** remove the two `scroll-house` script tags at the bottom of `index.html`.
+
 ## 9. After editing
 
 Preview locally with `python3 -m http.server 8000`, then open http://localhost:8000. Commit and push to `main`, and GitHub Pages updates within about a minute.

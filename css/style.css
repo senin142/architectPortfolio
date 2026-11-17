@@ -1072,6 +1072,95 @@ section { padding: var(--section-padding) 0; }
 .error-page svg { width: clamp(180px, 30vw, 260px); height: auto; color: var(--accent-gold); margin: 0 auto 32px; }
 .error-page p { max-width: 40ch; color: var(--text-on-dark-muted); margin: 0 auto 36px; }
 
+/* ---------- 21b · Scroll house ------------------------------------------- */
+.scroll-house-wrap {
+  position: fixed; inset: 0; z-index: 50;
+  pointer-events: none; contain: strict; will-change: transform;
+  color: var(--text-primary);
+  transition: opacity 0.4s var(--ease-reveal), color 0.4s var(--ease-out);
+}
+.scroll-house-wrap.tone-dark { color: var(--text-on-dark); }
+.scroll-house-wrap.is-thud { animation: sh-thud 0.18s var(--ease-snap); }
+@keyframes sh-thud { 50% { transform: translateY(1px); } }
+
+.scroll-house { position: absolute; overflow: visible; }
+@media (min-width: 1025px) { .scroll-house { right: 2vw; bottom: 15vh; height: 66vh; width: auto; } }
+@media (min-width: 769px) and (max-width: 1024px) {
+  .scroll-house { left: 50%; bottom: 12vh; height: 60vh; height: 60svh; width: auto; transform: translateX(-50%); }
+}
+@media (max-width: 768px) { .scroll-house { right: 0; bottom: 64px; width: 100vw; height: auto; } }
+
+/* stroke opacity lives on the strokes, so the window glow inside a stage keeps its own */
+.sh-stage { --o: 0.16; }
+.sh-stage[data-kind="pipe"], .sh-stage[data-kind="wire"] { --o: 0.19; }
+.sh-stage.is-active { --o: 0.26; }
+.sh-stage.is-active[data-kind="pipe"], .sh-stage.is-active[data-kind="wire"] { --o: 0.3; }
+.sh-path, .sh-brick { opacity: var(--o); transition: opacity 0.4s var(--ease-out); }
+.sh-stage[data-kind="pipe"] { color: var(--accent-secondary); }
+.sh-stage[data-kind="wire"] { color: var(--accent-primary); }
+.sh-detail { stroke-width: 1; }
+.sh-lead { transition: opacity 0.6s var(--ease-out); }
+.sh-stage.is-lead-done .sh-lead { opacity: 0; }
+.sh-services { transition: none; }
+
+.sh-paint--ochre { fill: #c9a46a; opacity: 0.14; }
+.sh-paint--lime { fill: #efe9dc; opacity: 0; }
+.tone-dark .sh-paint--ochre { opacity: 0.1; }
+.tone-dark .sh-paint--lime { opacity: 0.12; }
+.sh-glow { fill: url(#sh-glow-grad); }
+.sh-glow-stop { stop-color: var(--accent-gold); stop-opacity: 0.35; }
+.sh-glow-stop--out { stop-opacity: 0; }
+
+.sh-dot { fill: var(--accent-gold); stroke: none; }
+.sh-pen.is-resting .sh-dot { animation: sh-breathe 1.6s var(--ease-out) infinite alternate; }
+@keyframes sh-breathe { to { transform: scale(1.12); } }
+
+@media (max-width: 768px) {
+  .sh-detail { display: none; }
+  .sh-stage { --o: 0.13; }
+  .sh-stage[data-kind="pipe"], .sh-stage[data-kind="wire"] { --o: 0.15; }
+  .sh-stage.is-active { --o: 0.21; }
+  .sh-stage.is-active[data-kind="pipe"], .sh-stage.is-active[data-kind="wire"] { --o: 0.24; }
+}
+
+/* lift photos and opaque cards above the drawing */
+.project-card, .about-image, .testimonial-card { position: relative; z-index: 51; }
+
+/* stage label: a drawing-sheet title block on desktop, a compact pill below */
+.scroll-stage {
+  position: fixed; z-index: 60;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 4px;
+  pointer-events: none; color: var(--text-secondary);
+  transition: opacity 0.4s var(--ease-reveal);
+}
+.scroll-stage > span { transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out); }
+.scroll-stage.is-swapping > span:not(.sh-ticks):not(.chapter-line) { opacity: 0; transform: translateY(6px); }
+.scroll-stage-num { font-family: var(--font-display); font-size: 1.35rem; line-height: 1; color: var(--accent-gold); }
+.scroll-stage-name { font-family: var(--font-body); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-primary); }
+.scroll-stage-caption { font-family: var(--font-display); font-style: italic; font-size: 0.95rem; }
+.scroll-stage .chapter-line { display: block; width: 60px; height: 1px; margin: 6px 0 4px; background: var(--accent-gold); }
+.sh-ticks { display: flex; gap: 6px; }
+.sh-ticks i { width: 1px; height: 8px; background: var(--border-light); transition: background-color 0.3s var(--ease-out); }
+.sh-ticks i.is-on { background: var(--accent-gold); }
+@media (min-width: 1025px) { .scroll-stage { right: 2vw; bottom: 3vh; text-align: right; } }
+@media (max-width: 1024px) {
+  .scroll-stage {
+    left: 12px; bottom: 16px; max-width: 60vw;
+    flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 2px 8px;
+    padding: 6px 12px; border: 1px solid var(--border-light);
+    background: var(--bg-primary);
+    background: color-mix(in srgb, var(--bg-primary) 82%, transparent);
+  }
+  .scroll-stage-num { font-size: 1rem; }
+  .scroll-stage-caption { flex-basis: 100%; }
+  .scroll-stage .chapter-line, .sh-ticks { display: none; }
+}
+@media (max-width: 480px) { .scroll-stage-caption { display: none; } }
+
+.scroll-house-wrap.is-hidden, .scroll-stage.is-hidden { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .sh-pen .sh-dot { animation: none !important; } }
+@media print { .scroll-house-wrap, .scroll-stage { display: none !important; } }
+
 /* ---------- 22 · Responsive ----------------------------------------------- */
 @media (max-width: 1024px) {
   .hero-decoration { width: 48vw; opacity: 0.35; bottom: 4%; }

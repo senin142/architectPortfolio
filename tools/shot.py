@@ -10,6 +10,7 @@ ap.add_argument('--height', type=int, default=900)
 ap.add_argument('--dark', action='store_true'); ap.add_argument('--nojs', action='store_true')
 ap.add_argument('--reduced', action='store_true'); ap.add_argument('--noscroll', action='store_true')
 ap.add_argument('--url', default='http://127.0.0.1:8791/')
+ap.add_argument('--cpu', type=float, default=0)
 ap.add_argument('--eval', default=None); ap.add_argument('--wait', type=float, default=2.5)
 a = ap.parse_args()
 
@@ -44,6 +45,7 @@ try:
     if a.reduced: feats.append({'name': 'prefers-reduced-motion', 'value': 'reduce'})
     send('Emulation.setEmulatedMedia', {'features': feats})
     if a.nojs: send('Emulation.setScriptExecutionDisabled', {'value': True})
+    if a.cpu: send('Emulation.setCPUThrottlingRate', {'rate': a.cpu})
     send('Page.navigate', {'url': a.url})
     time.sleep(2.5)
     def ev(js):
