@@ -1,4 +1,4 @@
-# Scroll House: Design (v3, red-teamed; see the Red-Team Log in the plan)
+# Scroll House: Design (v4, reviewed by design + engineering; see the Red-Team Log and Review Log in the plan)
 
 ## Intent
 
@@ -30,7 +30,7 @@ Reference style: minimal line motion graphics, i.e. a single smooth curve with a
 
 A single-storey-plus-one contemporary Indian home, in elevation (front view):
 
-- **Ground floor:** a front **verandah** with 3 slim pillars and a stepped plinth (3 steps); a carved wooden main door; one window with a deep **chhajja**.
+- **Ground floor:** a front **verandah** with 3 slim pillars and a stepped plinth (3 steps); a plain double-leaf main door with a threshold step; one window with a deep **chhajja** (cast RCC, so it appears with the frame, not the finish).
 - **Upper floor:** a modern flat-roof box with a horizontal ribbon window and a **jaali** screen panel (a simple geometric lattice).
 - **Roof:** a **sloped terracotta-tile roof** over the verandah wing. Tile courses are drawn as short parallel strokes.
 - On the flat roof: the **overhead water tank** (Sintex-style cylinder), which the plumbing stage connects to.
@@ -43,34 +43,36 @@ The label shows `0N / 07 — Name` plus one short caption, so the story is easy 
 
 | # | Name | What appears | Caption | Visual treatment |
 | --- | --- | --- | --- | --- |
-| 1 | Layout | Ground line, plot pegs, the plan line pulled taut | "Marking the plot" | Single continuous pen line (the reference curve), dot at tip |
-| 2 | Frame | Plinth, columns, beams, slabs | "Raising the RCC frame" | Pen line continues |
+| 1 | Layout | Ground line, plot pegs, the plan line pulled taut, one dimension line with hero-style ticks | "Marking the plot" | Single continuous pen line (the reference curve, round caps), gold dot at tip |
+| 2 | Frame | Plinth, columns, beams, slabs, chhajja | "Raising the RCC frame" | Pen line continues (square caps from here on) |
 | 3 | Brickwork | Brick courses fill the walls row by row; window and door openings stay empty | "Laying the walls, course by course" | Short brick strokes, rows revealed bottom-up; the dot runs along the current course |
 | 4 | Plumbing | Water tank, down-pipe, lines to kitchen and bath, small valve/tap symbols | "Water lines, before the plaster" | Sage-green dashed runs draw from the tank down |
-| 5 | Electrical | Meter box, conduit runs, switch boxes, light points | "Wiring every room" | Terracotta/gold conduit runs with small square boxes and dot points |
-| 6 | Plaster & Paint | Walls wash in lime-white / warm ochre; the pipes and wires fade *under* the paint (concealed) | "Plaster, then colour" | A paint "roller wipe" (clip reveal) upward; the dot becomes a short roller bar |
-| 7 | Home | Sloped tile roof, jaali, chhajja, door, tree, tulsi; window lights glow on | "Home." | Final line work, then a warm glow in the windows (payoff for electrical) |
+| 5 | Electrical | Meter box, conduit runs, switch boxes, light points | "Wiring every room" | Terracotta conduit runs with small square boxes and dot points (gold is reserved for the dot and the glow) |
+| 6 | Plaster & Paint | The ochre accent wall washes in (lime-white on dark tones only); brick strokes fade under the wipe; the pipes and wires fade *under* the paint (concealed) | "Plaster, then colour" | A paint "roller wipe" (clip reveal) upward; the dot becomes a roller bar spanning the wall |
+| 7 | Home | Sloped tile roof, jaali, door, tree, tulsi; window lights glow on | "Home." | Final line work, then a warm gold glow in the windows over the last 15% of scroll (payoff for electrical) |
 
 ## Goals
 
-- **Front-loaded speed:** about 20% of the scroll completes stages 1–3, so the house visibly exists quickly. The later stages add richness more slowly.
+- **Front-loaded speed:** about 20% of the *effective* scroll completes stages 1–3 (measured: 19%), so the house visibly exists quickly. Plumbing ends near 28%, electrical near 37%, paint near 51%, and Home draws over the second half with the lights coming on in the last 15% (Contact and the footer).
+- **Pause during Projects (client decision):** the house builds fast over the stats strip, holds still while the Projects grid fills the viewport (the pen rests and breathes, the label keeps its stage), then continues from About onwards. Scroll inside the hold window contributes nothing to progress; the window follows the grid's height, so filtering shortens it. At 1440×900 the hold begins with the brick courses 42% laid and ends as About arrives; Plumbing lands in About, Electrical crossing into Services, Paint in Services, Home over Process, Testimonials and Contact.
 - **Kinetic feel:**
   - The pen follows scroll on a spring with slight lag and overshoot.
-  - Each completed stage settle-shakes (2–3px, about 420ms).
-  - When the brick courses finish they give one small "thud".
+  - Each completed stage settle-shakes (about 1.4px and 0.12°, 320ms): a settle, not a wobble.
+  - When the brick courses finish they give one small vertical "thud" (1px).
   - Scrolling up deconstructs: the stage un-draws, and completed stages drift 4–8px apart as they come off.
-  - Everything is at rest when scrolling stops.
-- **Progress visible:** the existing gold left-edge line, plus the stage label and caption fixed bottom-left.
+  - Everything is at rest when scrolling stops; the resting dot breathes gently.
+- **Progress visible:** the existing gold left-edge line, plus the stage label. On desktop it is a small title block under the house (bottom right): number, name, caption, a 60px gold rule and a 7-tick strip that fills gold stage by stage. On tablet and mobile it is a compact pill bottom-left.
 - **Mobile and desktop:** the same drawing.
-  - Desktop: right side, about 42vw.
-  - Mobile: centred, full viewport height, slightly lower opacity behind text. The caption is hidden on screens ≤ 380px if it crowds the content.
+  - Desktop: right side, 92vh tall.
+  - Tablet: centred, 88vh tall.
+  - Mobile: full viewport width anchored bottom-right (375×500 at 375px), slightly lower opacity behind text. The caption is hidden on screens ≤ 480px.
 
 ## Non-goals and anti-goals
 
 - No libraries (no GSAP) and no build step.
-- **Text readability comes first.** Lines at about 16% opacity, paint washes at about 10%. If it competes with the content, that is a failure.
+- **Text readability comes first.** Lines at about 16% opacity (the stage currently drawing at about 26%), paint washes at 10–14%. Lines do draw over body text and transparent cards by design; only photos and opaque cards sit above them. If it competes with the content, that is a failure.
 - No mobile jank: no layout reads in the loop, and no work while idle.
-- No cartoonishness. It must stay architectural line art with restrained colour (the site palette only: ink, gold, terracotta, sage, lime-white, ochre).
+- No cartoonishness. It must stay architectural line art with restrained colour (the site palette only: ink or ivory lines, terracotta wires, sage pipes, ochre and lime-white washes; gold only for the dot and the window glow). It must sit as well on the Night & Gold dark theme (midnight navy) as on paper.
 
 ## Approaches considered
 
@@ -85,24 +87,26 @@ The label shows `0N / 07 — Name` plus one short caption, so the story is easy 
   - Line kinds (`line`, `pipe`, `wire`, `finish`) contain `path.sh-path` elements, drawn in document order.
   - `brick` contains `g.sh-course` rows, bottom row first.
   - `paint` contains `.sh-paint` filled shapes.
-  - `finish` may also contain `.sh-glow` shapes.
-  - The `pipe` and `wire` groups also carry the class `sh-services`, so paint can fade them.
+  - `finish` may also contain `.sh-glow` shapes filled by a `radialGradient` (gold, 0.35 → 0; no filters).
+  - The `pipe` and `wire` stages wrap their paths in an inner `g.sh-services`, so paint can fade them without touching the stage group's own opacity (one writer per attribute).
 - **Mapping:**
-  - Scroll progress `s` runs from the end of the hero to the bottom of the page.
-  - `target = ease(s)` is front-loaded.
+  - Scroll progress `s` runs from the end of the hero to the bottom of the page, snapping to 1 at `s ≥ 0.995`. It is *effective* scroll: the hold window over the Projects grid (`gridTop − 0.35·innerHeight` to `gridBottom − 0.65·innerHeight`) is removed from both numerator and denominator (`pausedProgress`).
+  - `target = ease(s) = 1 − (1 − s)^2.2` is front-loaded.
   - A spring drives `x` toward `target`.
-  - `x` is distributed across the 7 stages by weight (not by raw length): weights `[1, 1, 1.2, 1, 1, 1.2, 1.4]`.
+  - `x` is distributed across the 7 stages by weight (not by raw length): weights `[0.8, 0.9, 1.2, 1, 1, 1.2, 1.6]`.
 - **Per-kind render of stage fraction `f`:**
-  - **line:** distribute `f` across the paths by length and set `dashoffset`.
+  - **line:** distribute `f` across the paths by length and set `dashoffset` (dasharray `L L+2`, offset `(L+1)(1−f)`, so an undrawn path shows no cap dot).
   - **brick:** reveal bricks one by one, left → right within each course and bottom course first (`round(f·N)` bricks visible).
-  - **paint:** an SVG `<clipPath>` rect rises from the bottom (its attributes are set by JS, which is Safari-safe); `.sh-services` opacity goes `1 → 0.18` as `f` goes `0 → 1`.
-  - **finish:** line rule for its paths, with `.sh-glow` opacity ramping in over the last 30%.
-- **Pen dot:** `circle.sh-dot` sits at the active tip. During paint it morphs (`scaleX` 3, `scaleY` 0.5) into a roller bar riding the wipe edge.
+  - **paint:** an SVG `<clipPath>` rect rises from the bottom (its attributes are set by JS, which is Safari-safe); `g.sh-services` opacity goes `1 → 0.18` and each brick course fades `1 → 0.25` as the wipe passes it. The ochre accent wall carries the paint on light paper (0.14); lime-white appears only on dark tones (0.12).
+  - **finish:** line rule for its paths, with `.sh-glow` opacity ramping in over the last 15% of raw scroll (`t ≥ ease(0.85)`).
+  - **active stage:** the stage currently drawing is 1.6× its base opacity and crossfades to base on completion.
+- **Pen dot:** `g.sh-pen > circle.sh-dot` (gold, r 4.5, opaque) sits at the active tip. During paint it morphs (`scaleX` 8, `scaleY` 0.5) into a roller bar riding the wipe edge. At rest it breathes (scale 1 → 1.12, 1.6s).
 - **Layer:**
   - `svg.scroll-house`: fixed, `pointer-events: none`, `aria-hidden`, `z-index: 50` (under the header and modals).
-  - No blend modes. Line colour follows the *tone* of the section under the viewport centre (dark sections such as Services and the footer, or dark theme → light lines).
-  - Solid surfaces (cards, images, form) sit above the layer, so lines never cross photos.
-  - Hidden while the hero is on screen and while `body.modal-open`.
+  - No blend modes. Line colour follows the *tone* of the section under the viewport centre (dark sections: the hero, Services and the footer; or dark theme → light lines).
+  - Photos and opaque cards (project cards, the about image, testimonial cards) sit above the layer, so lines never cross photos. The contact form, stats and translucent service cards are not lifted: the finished house shows through them.
+  - Hidden while the hero is on screen, while `body.modal-open` and while `body.nav-open`; visibility is evaluated from the body class as soon as the layer is ready.
+  - Scroll range is remeasured on resize and whenever `main` changes height (project filter, lazy images, font swap); path lengths are measured once.
 - **Accessibility:** under `prefers-reduced-motion`, show the complete static house. Print hides it.
 
 ## Left to the builder
@@ -114,5 +118,8 @@ Exact path geometry, spring constants within the plan's ranges, opacity tuning p
 - Screenshots at each stage midpoint and at 100% scroll, in light and dark, at 1440 and 375.
 - A person unfamiliar with it can name the stage from the drawing alone (self-check against the captions).
 - Scrolling up reverses.
+- A jump to `#contact` (instant and smooth) never shakes more than 2 stages at once and settles to none.
+- Scrolling through the Projects grid leaves the target progress unchanged; the build resumes on either side without a jump.
 - Reduced motion shows the static house.
+- In the Night & Gold theme the wires, washes and glow all read on navy.
 - No console errors and no horizontal overflow; the idle loop stops.
