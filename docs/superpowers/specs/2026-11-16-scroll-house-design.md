@@ -123,3 +123,39 @@ Exact path geometry, spring constants within the plan's ranges, opacity tuning p
 - Reduced motion shows the static house.
 - In the Night & Gold theme the wires, washes and glow all read on navy.
 - No console errors and no horizontal overflow; the idle loop stops.
+
+---
+
+## v5 addendum (2026-11-17): plan → elevation, professional drafting, edge fly-ins
+
+The client asked for: a "more professional" drawing that looks like a professional architect's plan; lines that travel in from the screen edges in every direction and join the design; and both views, a floor plan that rotates from top view to front view, to show more detail.
+
+**Sequence: 8 stages.** The weights are `[0.8, 1.1, 1.0, 0.9, 0.9, 1.2, 1.1, 1.6]`.
+
+| # | Name | View | Content |
+|---|---|---|---|
+| 1 | Site & grid | plan | plot boundary (dash-dot), structural grid A–D / 1–3 with circled labels, north arrow |
+| 2 | Floor plan | plan | 230 mm walls with poché hatch, columns, doors with swing arcs, windows, verandah steps, open-to-sky aangan with tulsi, room names, dimension strings, title "GROUND FLOOR PLAN · 1:100" |
+| 3 | Services | plan | plumbing (fixtures: WC, basin, sink, shower, inspection chamber) and electrical (⊗ lights, switches, sockets, DB, curved wiring runs), as in real MEP plans |
+| 4 | Plan to elevation | both | the plan tips back flat (CSS 3D `rotateX` 0 → 90°, hinged on the front wall / ground line) while the elevation rises (−90° → 0) from the same line |
+| 5 | Frame | elevation | ground, plinth, RCC frame, chhajja, grid axes with bubbles, level markers (▽ ±0.00 GL, +0.45 PL, +3.30 FFL, +6.60 TOS), earth hatch, dimension strings |
+| 6 | Brickwork | elevation | brick courses; conduits and water lines go in with the masonry |
+| 7 | Plaster & Paint | elevation | roller wipe; services concealed |
+| 8 | Home | elevation | roof, jaali, door, tree, tulsi; leader notes; title "FRONT ELEVATION · 1:100"; lights glow |
+
+**Both views share the same coordinates** (`viewBox 0 280 600 540`):
+- grid axes at x = 95 / 300 / 400 / 500, matching the elevation's column centres;
+- the plan's front wall and the elevation's ground line are both at y = 740, which is the hinge.
+
+So the rotation reads as one drawing turning, not two pictures swapping.
+
+**Professional drafting:**
+- line-weight hierarchy: `.sh-heavy` 2.2 for cut, outline and ground; the default 1.5; `.sh-detail` 1.0 for hatching; `.sh-thin` 0.6 for grid, dimensions and leaders;
+- `<text class="sh-note">` annotations (Inter, small caps-style, letter-spaced), which fade in once their stage is about 80% drawn.
+
+**Edge fly-ins:**
+- A second full-viewport SVG carries 6–10 comet lines per drawing stage. Each starts at a screen edge (spread around all four sides and the diagonals) and travels to a joint of that stage. The tail follows the head, so the line "joins" the drawing and disappears into it.
+- They are scrubbed by scroll and reverse on scroll-up.
+- Anchors are measured in screen space once per measure (with the 3D transforms cleared). No fly-ins during the rotation stage.
+
+**Grouping:** groups may share a stage number. A stage's fraction drives every group with that `data-stage`, each by its own `data-kind`. The pause during Projects, the hysteresis, the shakes, the drift, the label, tone, reduced motion and visibility all carry over unchanged.
